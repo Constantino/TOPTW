@@ -97,9 +97,14 @@ class insertion_step:
 		selection_point = sum(ratios)*percentage/100
 		potential_locations = [e for e in Locations if e.ratio >= selection_point]
 		
-		len_pot = len(potential_locations)
-		index = random.randrange(0,len_pot)
+		len_pot = len(potential_locations)-1
+		index = random.randint(0,len_pot)
 		location_selected = potential_locations[index]
+		#location_selected = random.choice(potential_locations)
+		#print "**location_selected: ",location_selected.id_location
+		#print "len_pot: ",len_pot
+		#for l in potential_locations:
+		#	print "potencial_location: ",e.id_location, "  index: ",index
 		"""
 		print "random_number: ",index
 		print "ratios: ",ratios
@@ -109,6 +114,14 @@ class insertion_step:
 		#print "location_selected: ",location_selected
 		#print "l sel: ",Locations[location_selected].id_location
 		return location_selected
+
+	def update_ratio(self, Locations):
+
+		for l in range(1,len(Locations)-1):
+			Locations[l].ratio = self.ratio(Locations,l)
+
+
+		return Locations
 
 	def update_shift(self, Locations, times):
 
