@@ -110,6 +110,37 @@ class insertion_step:
 		#print "l sel: ",Locations[location_selected].id_location
 		return location_selected
 
+	def update_shift(self, Locations, times, start):
+
+		for l in range(1,len(Locations)-1):
+			Locations[l].shift = self.Shift(Locations,l+1,l, times, Locations[l].arrival)
+
+		return Locations
+
+	def update_arrival(self, Locations,times):
+		print "in"
+		for l in range(2,len(Locations)-1):
+			i = Locations[l-1].id_location
+			k = Locations[l].id_location
+			Locations[l].arrival = Locations[l-1].leave+times[i][k]
+			print "l id: ",k," arrival: ",Locations[l].arrival
+		print "out"
+		return Locations
+
+	def update_leave(self, Locations):
+		for l in range(1,len(Locations)-2):
+			Locations[l].leave = Locations[l].arrival + Locations[l].max_shift
+
+		return Locations
+
+	def update_max_shift(self, Locations):
+		for l in range(1,len(Locations)-2):
+			potential_max = min(Locations[l].closing-Locations[l].arrival,Locations[l].wait+Locations[l+1].max_shift)
+
+			Locations[l].max_shift = min(potential_max,1)
+
+		return Locations
+
 	def update_after_insertion(self,j,Locations,times,start,end):
 		
 		k = j+1
@@ -123,20 +154,6 @@ class insertion_step:
 		#Locations[k].start = Locations[k].start + Locations[k].shift
 		Locations[k].max_shift = max(0,Locations[k].max_shift - Locations[k].shift)
 		"""
-
-		for l in range(j+1,len(Locations)-2):
-			#print "i: ",i
-			Locations[l].arrival = self.estimateArrival(l-1,l,times,start+Locations[l].max_shift)
-			print "**Location arrival: ", Locations[l].arrival
-			
-			Locations[l].wait = self.wait(Locations[l].opening, Locations[l].arrival)
-			
-			Locations[l].max_shift = self.maxShift(Locations, _j, Locations[l].opening, Locations[i].closing, Locations[i].arrival, times,start,end)
-			"""
-			Locations[i].shift = self.Shift(Locations, i, i-1, times, start)
-		
-			Locations[i].ratio = self.ratio( Locations, i )
-			"""
 
 		return Locations
 
