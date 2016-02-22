@@ -110,10 +110,17 @@ class insertion_step:
 		#print "l sel: ",Locations[location_selected].id_location
 		return location_selected
 
-	def update_shift(self, Locations, times, start):
+	def update_shift(self, Locations, times):
+
+		for l in range(1,len(Locations)-2):
+			Locations[l].shift = self.Shift(Locations,l+1,l, times, Locations[l].arrival)
+
+		return Locations
+
+	def update_wait(self, Locations):
 
 		for l in range(1,len(Locations)-1):
-			Locations[l].shift = self.Shift(Locations,l+1,l, times, Locations[l].arrival)
+			Locations[l].wait = self.wait(Locations[l].opening,Locations[l].arrival)
 
 		return Locations
 
