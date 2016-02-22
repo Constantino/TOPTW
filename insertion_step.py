@@ -11,27 +11,38 @@ class insertion_step:
 		#estimate time from location_i to location_k + start time
 		return times[l_i][l_k]+start
 	
+	#this for maxShift
+	def getLeaveTime(self, Locations, i,end):
+		return Locations[i].closing if Locations[i].closing <= end else end
+
+	#this for location
+	def getLeave(self, Locations, i):
+		return Locations[i].arrival+Locations[i].max_shift
+
 	def maxShift(self, Locations, i, opening, closing, arrival, times,start,end):
 		
-		if i+1 == (len(Locations)-1):
-			#If we reach the last location, means it's the end of the tour
-			leave = Locations[i].closing if Locations[i].closing <= end else end
-			#print "leave from ",i,": ",leave
-			arr2 = times[i][i+1]
-			#print "arrival: ",arrival
-			#print "next arrival: ",arr2
-			max_shift = leave-arrival-arr2
-			#print "max_shift: ",max_shift
-			return max_shift
+		#if i+1 == (len(Locations)-1):
+		
+		#If we reach the last location, means it's the end of the tour
+		leave = self.getLeaveTime(Locations,i,end)
+		print "leave from ",i,": ",leave
+		arr2 = times[i][i+1]
+		print "arrival: ",arrival
+		print "next arrival: ",arr2
+		max_shift = leave-arrival-arr2
+		print "max_shift: ",max_shift
+		return max_shift
 
 		#We chose the maximum time allowed to stay in one place in order to not make 
 		#infeasible the staying time for the rest of locations.
+		"""
 		return 	min( closing-arrival , 
 						self.wait(opening, arrival) + 
 							self.maxShift(
 								Locations, i+1, Locations[i+1].opening, 
 								Locations[i+1].closing, self.estimateArrival(i, i+1,times,start), 
 								times,start,end))
+		"""
 
 
 	def ratio(self,Locations,i):
@@ -66,10 +77,13 @@ class insertion_step:
 			#print "i: ",i
 			Locations[i].arrival = self.estimateArrival(0,Locations[i].id_location,times,start)
 			#print "Location arrival: ", Locations[i].arrival
+			
 			Locations[i].wait = self.wait(Locations[i].opening, Locations[i].arrival)
 
-			Locations[i].max_shift = self.maxShift(Locations, 0, Locations[i].opening, Locations[i].closing, Locations[i].arrival, times,start,end)
+			Locations[i].max_shift = self.maxShift(Locations, i, Locations[i].opening, Locations[i].closing, Locations[i].arrival, times,start,end)
 			
+			Locations[i].leave = self.getLeave(Locations,i)
+
 			Locations[i].shift = self.Shift(Locations, i, i-1, times, start)
 		
 			Locations[i].ratio = self.ratio( Locations, i )
@@ -97,14 +111,32 @@ class insertion_step:
 		return location_selected
 
 	def update_after_insertion(self,j,Locations,times,start,end):
+		
 		k = j+1
+		"""
 		Locations[j].shift = self.Shift(Locations, j, j-1, times, start)
 		Locations[k].wait = max( 0, Locations[k].wait - Locations[j].shift )
-		Locations[k].arrival = Locations[k].arrival + Locations[j].shift
+		Locations[k].arrival = start+times[j][k]+Locations[j].shift#Locations[k].arrival + Locations[j].shift
 		Locations[k].shift = max(0,Locations[j].shift - Locations[k].wait)
+		
 		print "k: ",k," loc id: ",Locations[k].id_location," shift: ",Locations[k].shift
 		#Locations[k].start = Locations[k].start + Locations[k].shift
 		Locations[k].max_shift = max(0,Locations[k].max_shift - Locations[k].shift)
+		"""
+
+		for l in range(j+1,len(Locations)-2):
+			#print "i: ",i
+			Locations[l].arrival = self.estimateArrival(l-1,l,times,start+Locations[l].max_shift)
+			print "**Location arrival: ", Locations[l].arrival
+			
+			Locations[l].wait = self.wait(Locations[l].opening, Locations[l].arrival)
+			
+			Locations[l].max_shift = self.maxShift(Locations, _j, Locations[l].opening, Locations[i].closing, Locations[i].arrival, times,start,end)
+			"""
+			Locations[i].shift = self.Shift(Locations, i, i-1, times, start)
+		
+			Locations[i].ratio = self.ratio( Locations, i )
+			"""
 
 		return Locations
 
