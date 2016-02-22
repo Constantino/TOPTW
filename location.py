@@ -9,3 +9,4 @@ class location:
 	max_shift = 0
 	shift = 0
 	ratio = 0
+	leave = 0
