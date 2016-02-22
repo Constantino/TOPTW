@@ -1,5 +1,6 @@
 from location import location
 from insertion_step import insertion_step
+from ILS import ILS
 
 def print_locations(Locations):
 	print "TOUR: "
@@ -77,7 +78,7 @@ Locations[3].arrival = 0
 Locations[3].leave = 0
 
 
-Locations[4].id_location = 3
+Locations[4].id_location = 4
 Locations[4].name = "End"
 Locations[4].opening = start
 Locations[4].closing = end
@@ -136,7 +137,8 @@ print "up wait"
 selected_locations = InsertionStep.update_wait(selected_locations)
 print "up shift"
 selected_locations = InsertionStep.update_shift(selected_locations,times)
-
+print "up ratio"
+selected_locations = InsertionStep.update_ratio(selected_locations)
 """
 #Update Tour Locations after location_j
 for x in range(selected_locations.index(selected_locations[1]),len(selected_locations)-2):
@@ -152,4 +154,10 @@ for x in range(0,selected_locations.index(selected_locations[1])-1):
 #_Locations = InsertionStep.update_locations(selected_locations,times,start,end)
 
 print_locations(selected_locations)
+
+
+print "Test of shake step"
+ILS = ILS()
+print_locations(ILS.shake(selected_locations,1,1))
+
 
