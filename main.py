@@ -23,20 +23,20 @@ def print_locations(Locations):
 		print " "
 		
 
-start = 9 #hours
-end = 13#hours
-
+start = 8 #hours
+end = 24 #hours
+n = 5 #no. elements
 instance = random_instance()
-Locations = instance.generate(5,start,end)
 
-times = [
-#0     1     2    3  4
-[0,   0.5, 1.3, 0.3, 1], # 0
-[0.5, 0,   0.8, 2,   1], # 1
-[1.3, 0.7, 0,   1,   1], # 2
-[0.3, 2,   1,   0,   1], # 3
-[1,   1,   1,   1,   0]  # 4
-]
+Locations = instance.generate(n,start,end)
+
+times = instance.generate_times(n)
+
+print_locations(Locations)
+
+print "times:"
+for e in times:
+	print e
 
 InsertionStep = insertion_step()
 
@@ -95,9 +95,9 @@ for x in range(0,selected_locations.index(selected_locations[1])-1):
 
 print_locations(selected_locations)
 
-
+"""
 print "Test of shake step"
 ILS = ILS()
 print_locations(ILS.shake(selected_locations,1,1))
-
+"""
 
