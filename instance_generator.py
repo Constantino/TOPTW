@@ -51,9 +51,9 @@ class random_instance:
 			else:
 				self.Locations[i].id_location = i
 				self.Locations[i].name = "Loc"+str(i)
-				self.Locations[i].opening = random.randint(8,24)
-				self.Locations[i].closing = random.randint(8,24)
-				self.Locations[i].score = random.randint(0,5)
+				self.Locations[i].opening = random.randint(8,17)
+				self.Locations[i].closing = random.randint(self.Locations[i].opening,22)+1
+				self.Locations[i].score = random.randint(1,5)
 				self.Locations[i].wait = 0
 				self.Locations[i].max_shift = 0
 				self.Locations[i].shift = 0
