@@ -49,29 +49,26 @@ selected_locations = []
 
 #Add start location to the tour
 selected_locations.append(Locations[0])
-
-#<exp>
-#while len(Locations) > 2: #number of index > 2; where "2" represents start and end location never removed
-
-#Select location for the tour
-selected = InsertionStep.select_to_insert(Locations)
-print "selected: ",selected
-
-#Add the new location to the tour
-#selected_locations.append(selected)
-#print "selected_locations.append(",selected.id_location,")"
-#Remove it from the common locations list
-print "removed l_location: ",selected.id_location
-Locations.remove(selected)
-
-
-print "append: ",Locations[len(Locations)-1].id_location
+#xprint "append: ",Locations[len(Locations)-1].id_location
 selected_locations.append(Locations[len(Locations)-1])
+#<exp>
+while len(Locations)>3: #number of index > 2; where "2" represents start and end location never removed
 
-selected_locations = InsertionStep.insert_location(selected_locations,selected,times,start)
+	#Select location for the tour
+	selected = InsertionStep.select_to_insert(Locations)
+	print "selected: ",selected
+	#Add the new location to the tour
+	#selected_locations.append(selected)
+	#print "selected_locations.append(",selected.id_location,")"
+	#Remove it from the common locations list
+	print "removed l_location: ",selected.id_location
+	Locations.remove(selected)
+	
+	selected_locations = InsertionStep.insert_location(selected_locations,selected,times,start)
+	print "len locations: ", len(Locations)
 #</exp>
-
-
+#print "last one: ", Locations[1].name
+#selected_locations = InsertionStep.insert_location(selected_locations,Locations[1],times,start)
 #Add end location to the tour
 #print "append: ",Locations[len(Locations)-1].id_location
 #selected_locations.append(Locations[len(Locations)-1])

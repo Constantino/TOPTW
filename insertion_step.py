@@ -196,6 +196,7 @@ class insertion_step:
 			Locations_tmp = [Locations[l],selected,Locations[l+1]]
 			shift_list.append( self.Shift(Locations_tmp, l+1, l, times, start) )
 
+		print "len shift_list: ",len(shift_list)
 		selected_index = shift_list.index(min(shift_list))+1
 
 		print "<shifts>"
@@ -203,6 +204,7 @@ class insertion_step:
 		print "insert at index: ",selected_index
 		print "</shifts>"
 		Locations.insert(selected_index,selected)
+
 
 		return Locations
 
