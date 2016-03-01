@@ -1,0 +1,213 @@
+TOUR: 
+Start:  8
+End:  24
+Locations:
+-- location ID:  0
+-- name:  start
+-- score:  0
+-- opening:  8
+-- closing:  24
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  1
+-- name:  Loc1
+-- score:  4
+-- opening:  17
+-- closing:  20
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  2
+-- name:  Loc2
+-- score:  3
+-- opening:  11
+-- closing:  12
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  3
+-- name:  Loc3
+-- score:  3
+-- opening:  10
+-- closing:  14
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  4
+-- name:  End
+-- score:  0
+-- opening:  8
+-- closing:  24
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+times:
+[0, 0.0, 0.8666666666666667, 0.6833333333333333, 0.2833333333333333]
+[0.0, 0, 0.65, 0.7833333333333333, 0.75]
+[0.8666666666666667, 0.65, 0, 0.05, 0.6666666666666666]
+[0.6833333333333333, 0.7833333333333333, 0.05, 0, 0.85]
+[0.2833333333333333, 0.75, 0.6666666666666666, 0.85, 0]
+TOUR: 
+Start:  8
+End:  24
+Locations:
+-- location ID:  0
+-- name:  start
+-- score:  0
+-- opening:  8
+-- closing:  24
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  1
+-- name:  Loc1
+-- score:  4
+-- opening:  17
+-- closing:  20
+-- arrival:  8.0
+-- wait:  9.0
+-- max_shift:  11.35
+-- shift:  20.1333333333
+-- ratio:  0.198675496689
+-- leave:  19.35
+ 
+-- location ID:  2
+-- name:  Loc2
+-- score:  3
+-- opening:  11
+-- closing:  12
+-- arrival:  8.86666666667
+-- wait:  2.13333333333
+-- max_shift:  3.08333333333
+-- shift:  5.13333333333
+-- ratio:  0.584415584416
+-- leave:  11.95
+ 
+-- location ID:  3
+-- name:  Loc3
+-- score:  3
+-- opening:  10
+-- closing:  14
+-- arrival:  8.68333333333
+-- wait:  1.31666666667
+-- max_shift:  4.46666666667
+-- shift:  5.78333333333
+-- ratio:  0.518731988473
+-- leave:  13.15
+ 
+-- location ID:  4
+-- name:  End
+-- score:  0
+-- opening:  8
+-- closing:  24
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+........
+selected:  <location.location instance at 0x10396c290>
+selected_locations.append( 2 )
+removed l_location:  2
+selected:  <location.location instance at 0x10396c2d8>
+selected_locations.append( 3 )
+removed l_location:  3
+selected:  <location.location instance at 0x10396c248>
+selected_locations.append( 1 )
+removed l_location:  1
+append:  4
+updating arrival
+updating wait
+updating shift
+updating ratio
+TOUR: 
+Start:  8
+End:  24
+Locations:
+-- location ID:  0
+-- name:  start
+-- score:  0
+-- opening:  8
+-- closing:  24
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  2
+-- name:  Loc2
+-- score:  3
+-- opening:  11
+-- closing:  12
+-- arrival:  8.86666666667
+-- wait:  2.13333333333
+-- max_shift:  1
+-- shift:  1.0
+-- ratio:  3.0
+-- leave:  9.86666666667
+ 
+-- location ID:  3
+-- name:  Loc3
+-- score:  3
+-- opening:  10
+-- closing:  14
+-- arrival:  9.91666666667
+-- wait:  0.0833333333333
+-- max_shift:  1
+-- shift:  17.8833333333
+-- ratio:  0.167753960857
+-- leave:  9.68333333333
+ 
+-- location ID:  1
+-- name:  Loc1
+-- score:  4
+-- opening:  17
+-- closing:  20
+-- arrival:  10.4666666667
+-- wait:  6.53333333333
+-- max_shift:  11.35
+-- shift:  20.1333333333
+-- ratio:  0.198675496689
+-- leave:  19.35
+ 
+-- location ID:  4
+-- name:  End
+-- score:  0
+-- opening:  8
+-- closing:  24
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
