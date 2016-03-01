@@ -50,22 +50,31 @@ selected_locations = []
 #Add start location to the tour
 selected_locations.append(Locations[0])
 
-while len(Locations) > 2: #number of index > 2; where "2" represents start and end location never removed
+#<exp>
+#while len(Locations) > 2: #number of index > 2; where "2" represents start and end location never removed
 
-	#Select location for the tour
-	selected = InsertionStep.select_to_insert(Locations)
-	print "selected: ",selected
-	
-	#Add the new location to the tour
-	selected_locations.append(selected)
-	print "selected_locations.append(",selected.id_location,")"
-	#Remove it from the common locations list
-	print "removed l_location: ",selected.id_location
-	Locations.remove(selected)
+#Select location for the tour
+selected = InsertionStep.select_to_insert(Locations)
+print "selected: ",selected
 
-#Add end location to the tour
+#Add the new location to the tour
+#selected_locations.append(selected)
+#print "selected_locations.append(",selected.id_location,")"
+#Remove it from the common locations list
+print "removed l_location: ",selected.id_location
+Locations.remove(selected)
+
+
 print "append: ",Locations[len(Locations)-1].id_location
 selected_locations.append(Locations[len(Locations)-1])
+
+selected_locations = InsertionStep.insert_location(selected_locations,selected,times,start)
+#</exp>
+
+
+#Add end location to the tour
+#print "append: ",Locations[len(Locations)-1].id_location
+#selected_locations.append(Locations[len(Locations)-1])
 
 selected_locations = InsertionStep.update_max_shift(selected_locations)
 selected_locations = InsertionStep.update_leave(selected_locations)

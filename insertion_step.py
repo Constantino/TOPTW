@@ -25,12 +25,12 @@ class insertion_step:
 		
 		#If we reach the last location, means it's the end of the tour
 		leave = self.getLeaveTime(Locations,i,end)
-		print "leave from ",i,": ",leave
+		#print "leave from ",i,": ",leave
 		arr2 = times[i][i+1]
-		print "arrival: ",arrival
-		print "next arrival: ",arr2
+		#print "arrival: ",arrival
+		#print "next arrival: ",arr2
 		max_shift = leave-arrival-arr2
-		print "max_shift: ",max_shift
+		#print "max_shift: ",max_shift
 		return max_shift
 
 		#We chose the maximum time allowed to stay in one place in order to not make 
@@ -47,25 +47,27 @@ class insertion_step:
 
 	def ratio(self,Locations,i):
 		#Gain of choosing it taking score vs cost of time
-		return Locations[i].score*1.0/Locations[i].shift	
+		#print Locations[i].id_location
+
+		return Locations[i].score*1.0/Locations[i].shift if Locations[i].shift > 0 else 1
 
 	def Shift( self, Locations, j , i, times, start):
 		#Get the total cost of time of including a location between location_i and location_k
 		k = j+1
 		cij = times[i][j]#self.estimateArrival( i, j, times, start )
-		print "cij: ", cij
+		#print "cij: ", cij
 		wait = Locations[j].wait
-		print "wait: ",wait
+		#print "wait: ",wait
 		
 		cjk = times[j][k]#self.estimateArrival( j, k , times, start)
-		print "cjk: ",cjk
+		#print "cjk: ",cjk
 		cik = times[i][k]#self.estimateArrival( i, k, times, start)
-		print "cik: ",cik
+		#print "cik: ",cik
 		Tj = max(0,Locations[j].max_shift)
-		print "Tj: ",Tj
+		#print "Tj: ",Tj
 
 		Shift = cij + wait + Tj + cjk - cik
-		print "shift: ",Shift
+		#print "shift: ",Shift
 		Sum_Wait_MaxShift = Locations[j].wait + Locations[j].max_shift
 
 		return Shift if (Shift <= Sum_Wait_MaxShift) else Sum_Wait_MaxShift
@@ -97,9 +99,13 @@ class insertion_step:
 		selection_point = sum(ratios)*percentage/100
 		potential_locations = [e for e in Locations if e.ratio >= selection_point]
 		
+		#for e in potential_locations:
+		#	print "potential: ",e.id_location
+
 		len_pot = len(potential_locations)-1
 		index = random.randint(0,len_pot)
 		location_selected = potential_locations[index]
+		
 		#location_selected = random.choice(potential_locations)
 		#print "**location_selected: ",location_selected.id_location
 		#print "len_pot: ",len_pot
@@ -113,6 +119,7 @@ class insertion_step:
 		"""
 		#print "location_selected: ",location_selected
 		#print "l sel: ",Locations[location_selected].id_location
+
 		return location_selected
 
 	def update_ratio(self, Locations):
@@ -138,13 +145,13 @@ class insertion_step:
 		return Locations
 
 	def update_arrival(self, Locations,times):
-		print "in"
+		#print "in"
 		for l in range(2,len(Locations)-1):
 			i = Locations[l-1].id_location
 			k = Locations[l].id_location
 			Locations[l].arrival = Locations[l-1].leave+times[i][k]
-			print "l id: ",k," arrival: ",Locations[l].arrival
-		print "out"
+			#print "l id: ",k," arrival: ",Locations[l].arrival
+		#print "out"
 		return Locations
 
 	def update_leave(self, Locations):
@@ -181,6 +188,25 @@ class insertion_step:
 		shift_list = {}
 
 		#for i in range(len(Locations)):
+
+	def insert_location(self, Locations, selected, times, start):
+		shift_list = []
+		print len(Locations)
+		for l in range(len(Locations)-1):
+			Locations_tmp = [Locations[l],selected,Locations[l+1]]
+			shift_list.append( self.Shift(Locations_tmp, l+1, l, times, start) )
+
+		selected_index = shift_list.index(min(shift_list))+1
+
+		print "<shifts>"
+		print shift_list
+		print "insert at index: ",selected_index
+		print "</shifts>"
+		Locations.insert(selected_index,selected)
+
+		return Locations
+
+
 
 
 
