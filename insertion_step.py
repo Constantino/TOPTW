@@ -71,7 +71,27 @@ class insertion_step:
 		Sum_Wait_MaxShift = Locations[j].wait + Locations[j].max_shift
 
 		return Shift if (Shift <= Sum_Wait_MaxShift) else Sum_Wait_MaxShift
+	
+	def ShiftSim( self, Locations, i, j, k, times):
+		#Get the total cost of time of including a location between location_i and location_k
+		cij = times[i][j]#self.estimateArrival( i, j, times, start )
+		#print "cij: ", cij
+		wait = Locations[1].wait
+		#print "wait: ",wait
 		
+		cjk = times[j][k]#self.estimateArrival( j, k , times, start)
+		#print "cjk: ",cjk
+		cik = times[i][k]#self.estimateArrival( i, k, times, start)
+		#print "cik: ",cik
+		Tj = max(0,Locations[1].max_shift)
+		#print "Tj: ",Tj
+
+		Shift = cij + wait + Tj + cjk - cik
+		#print "shift: ",Shift
+		Sum_Wait_MaxShift = Locations[1].wait + Locations[1].max_shift
+
+		return Shift if (Shift <= Sum_Wait_MaxShift) else Sum_Wait_MaxShift
+
 	def update_locations(self,Locations,times,start,end):
 		#Since location 0 is the origin and the last one the end of the tour:
 		#Iterate from the second location until the penultimate location
@@ -190,14 +210,15 @@ class insertion_step:
 		#for i in range(len(Locations)):
 
 	def insert_location(self, Locations, selected, times, start):
-		shift_list = []
+		ratio_list = []
 		print len(Locations)
 		for l in range(len(Locations)-1):
 			Locations_tmp = [Locations[l],selected,Locations[l+1]]
-			shift_list.append( self.Shift(Locations_tmp, l+1, l, times, start) )
+			shift = self.Shift(Locations_tmp, l+1, l, times, start)
+			ratio_list.append(selected.score*1.0/shift if shift > 0 else 1)
 
-		print "len shift_list: ",len(shift_list)
-		selected_index = shift_list.index(min(shift_list))+1
+		print "len ratio_list: ",len(ratio_list)
+		selected_index = shift_list.index(max(ratio_list))+1
 
 		print "<shifts>"
 		print shift_list
@@ -205,8 +226,28 @@ class insertion_step:
 		print "</shifts>"
 		Locations.insert(selected_index,selected)
 
-
 		return Locations
+
+
+	def simulate_insertion(self, Locations, selected, times):
+		potential_inserts = []
+		for l in range(1,len(Locations)-1):
+			local = [0,-1]
+			for s in range(len(selected)-1):
+				tmp = [ selected[s],Locations[l],selected[s+1] ]
+				print "i:",selected[s].id_location," j:",Locations[l].id_location," k: ",selected[s+1].id_location
+				
+				shift = self.ShiftSim(tmp, selected[s].id_location,Locations[l].id_location,selected[s+1].id_location, times)
+				ratio = Locations[l].score*1.0/shift if shift > 0 else 1
+				
+				if ratio > local[1]:
+					local[0] = Locations[l].id_location
+					local[1] = ratio
+				
+
+			potential_inserts.append(Locations[local[0]])
+
+		return potential_inserts
 
 
 

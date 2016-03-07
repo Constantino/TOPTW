@@ -28,9 +28,9 @@ end = 24 #hours
 n = 5 #no. elements
 instance = random_instance()
 
-Locations = instance.generate(n,start,end)
+Locations = instance.generate(n,start,end,5)
 
-times = instance.generate_times(n)
+times = instance.generate_times(n,5)
 
 print_locations(Locations)
 
@@ -40,6 +40,7 @@ for e in times:
 
 InsertionStep = insertion_step()
 
+#Initialize all locations as if each of them where inserted between start and end of tour
 Locations = InsertionStep.update_locations(Locations,times,start,end)
 
 print_locations(Locations)
@@ -52,6 +53,10 @@ selected_locations.append(Locations[0])
 #xprint "append: ",Locations[len(Locations)-1].id_location
 selected_locations.append(Locations[len(Locations)-1])
 #<exp>
+print "***---***"
+print_locations(InsertionStep.simulate_insertion(Locations, selected_locations, times))
+print "***---***"
+"""
 while len(Locations)>3: #number of index > 2; where "2" represents start and end location never removed
 
 	#Select location for the tour
@@ -66,13 +71,14 @@ while len(Locations)>3: #number of index > 2; where "2" represents start and end
 	
 	selected_locations = InsertionStep.insert_location(selected_locations,selected,times,start)
 	print "len locations: ", len(Locations)
+"""
 #</exp>
 #print "last one: ", Locations[1].name
 #selected_locations = InsertionStep.insert_location(selected_locations,Locations[1],times,start)
 #Add end location to the tour
 #print "append: ",Locations[len(Locations)-1].id_location
 #selected_locations.append(Locations[len(Locations)-1])
-
+"""
 selected_locations = InsertionStep.update_max_shift(selected_locations)
 selected_locations = InsertionStep.update_leave(selected_locations)
 
@@ -84,7 +90,7 @@ print "updating shift"
 selected_locations = InsertionStep.update_shift(selected_locations,times)
 print "updating ratio"
 selected_locations = InsertionStep.update_ratio(selected_locations)
-
+"""
 """
 #Update Tour Locations after location_j
 for x in range(selected_locations.index(selected_locations[1]),len(selected_locations)-2):
