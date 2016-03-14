@@ -54,7 +54,14 @@ selected_locations.append(Locations[0])
 selected_locations.append(Locations[len(Locations)-1])
 #<exp>
 print "***---***"
-print_locations(InsertionStep.simulate_insertion(Locations, selected_locations, times))
+potential_inserts,local_information = InsertionStep.simulate_insertion(Locations, selected_locations, times)
+print_locations( potential_inserts )
+
+selected_one =  InsertionStep.select_potential_location(potential_inserts)
+print "selected one : ",selected_one.id_location
+before = local_information[selected_one.id_location]
+print "insert after: ",before
+selected_locations.insert(before+1,selected_one)
 print "***---***"
 """
 while len(Locations)>3: #number of index > 2; where "2" represents start and end location never removed

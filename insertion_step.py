@@ -231,8 +231,9 @@ class insertion_step:
 
 	def simulate_insertion(self, Locations, selected, times):
 		potential_inserts = []
+		local_information = {}
 		for l in range(1,len(Locations)-1):
-			local = [0,-1]
+			local = [0,-1,-1]
 			for s in range(len(selected)-1):
 				tmp = [ selected[s],Locations[l],selected[s+1] ]
 				print "i:",selected[s].id_location," j:",Locations[l].id_location," k: ",selected[s+1].id_location
@@ -243,11 +244,34 @@ class insertion_step:
 				if ratio > local[1]:
 					local[0] = Locations[l].id_location
 					local[1] = ratio
+					local[2] = s #after this index
 				print "--- ratio: ", ratio
 			print "local: ",local
 			potential_inserts.append(Locations[local[0]])
+			local_information[local[0]] = local[2]
 
-		return potential_inserts
+		return potential_inserts, local_information
+
+	def validate_time_windows(self, Locations, selected):
+
+		#here goes all logic
+
+		return
+
+	def select_potential_location(self, Locations):
+
+		percentage = 30 #percent
+		ratios = [e.ratio for e in Locations]
+		#Get radio value to select potential locations to choose
+		selection_point = sum(ratios)*percentage/100
+		potential_locations = [e for e in Locations if e.ratio >= selection_point]
+
+		len_pot = len(potential_locations)-1
+		index = random.randint(0,len_pot)
+		location_selected = potential_locations[index]
+
+		print "selection_point: ",selection_point
+		return location_selected
 
 
 
