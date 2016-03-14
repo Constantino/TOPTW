@@ -243,8 +243,8 @@ class insertion_step:
 				if ratio > local[1]:
 					local[0] = Locations[l].id_location
 					local[1] = ratio
-				
-
+				print "--- ratio: ", ratio
+			print "local: ",local
 			potential_inserts.append(Locations[local[0]])
 
 		return potential_inserts
