@@ -53,16 +53,39 @@ selected_locations.append(Locations[0])
 #xprint "append: ",Locations[len(Locations)-1].id_location
 selected_locations.append(Locations[len(Locations)-1])
 #<exp>
-print "***---***"
-potential_inserts,local_information = InsertionStep.simulate_insertion(Locations, selected_locations, times)
-print_locations( potential_inserts )
+while len(Locations) > 2:
+	print "***---***"
+	potential_inserts,local_information = InsertionStep.simulate_insertion(Locations, selected_locations, times)
+	print "potential_inserts:"
+	print_locations( potential_inserts )
+	print "</potential_inserts"
 
-selected_one =  InsertionStep.select_potential_location(potential_inserts)
-print "selected one : ",selected_one.id_location
-before = local_information[selected_one.id_location]
-print "insert after: ",before
-selected_locations.insert(before+1,selected_one)
-print "***---***"
+	selected_one =  InsertionStep.select_potential_location(potential_inserts)
+	print "selected one : ",selected_one.id_location
+	before = local_information[selected_one.id_location]
+	print "insert after : ",before
+	selected_locations.insert(before+1,selected_one)
+	Locations.remove(selected_one)
+	print "***---***"
+
+	
+	print "updating shift"
+	selected_locations = InsertionStep.update_shift(selected_locations,times)
+	
+	selected_locations = InsertionStep.update_max_shift(selected_locations)
+	
+	selected_locations = InsertionStep.update_leave(selected_locations)
+	print "updating arrival"
+	selected_locations = InsertionStep.update_arrival(selected_locations,times)
+		
+	print "updating wait"
+	selected_locations = InsertionStep.update_wait(selected_locations)
+	
+	print "updating ratio"
+	selected_locations = InsertionStep.update_ratio(selected_locations)
+
+
+
 """
 while len(Locations)>3: #number of index > 2; where "2" represents start and end location never removed
 
@@ -85,19 +108,8 @@ while len(Locations)>3: #number of index > 2; where "2" represents start and end
 #Add end location to the tour
 #print "append: ",Locations[len(Locations)-1].id_location
 #selected_locations.append(Locations[len(Locations)-1])
-"""
-selected_locations = InsertionStep.update_max_shift(selected_locations)
-selected_locations = InsertionStep.update_leave(selected_locations)
 
-print "updating arrival"
-selected_locations = InsertionStep.update_arrival(selected_locations,times)
-print "updating wait"
-selected_locations = InsertionStep.update_wait(selected_locations)
-print "updating shift"
-selected_locations = InsertionStep.update_shift(selected_locations,times)
-print "updating ratio"
-selected_locations = InsertionStep.update_ratio(selected_locations)
-"""
+
 """
 #Update Tour Locations after location_j
 for x in range(selected_locations.index(selected_locations[1]),len(selected_locations)-2):

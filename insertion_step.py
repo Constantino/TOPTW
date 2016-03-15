@@ -161,7 +161,7 @@ class insertion_step:
 
 		for l in range(1,len(Locations)-1):
 			Locations[l].wait = self.wait(Locations[l].opening,Locations[l].arrival)
-
+			print "wait: ",Locations[l].wait, " --- l: ",l, " opening: ",Locations[l].opening, " arrival: ",Locations[l].arrival
 		return Locations
 
 	def update_arrival(self, Locations,times):
@@ -176,7 +176,7 @@ class insertion_step:
 
 	def update_leave(self, Locations):
 		for l in range(1,len(Locations)-2):
-			Locations[l].leave = Locations[l].arrival + Locations[l].max_shift
+			Locations[l].leave = Locations[l].arrival + Locations[l].max_shift + Locations[l].wait
 
 		return Locations
 
@@ -242,14 +242,14 @@ class insertion_step:
 				ratio = Locations[l].score*1.0/shift if shift > 0 else 1
 				
 				if ratio > local[1]:
-					local[0] = Locations[l].id_location
+					local[0] = Locations[l]
 					local[1] = ratio
 					local[2] = s #after this index
 				print "--- ratio: ", ratio
 			print "local: ",local
-			potential_inserts.append(Locations[local[0]])
-			local_information[local[0]] = local[2]
-
+			potential_inserts.append(local[0])
+			local_information[local[0].id_location] = local[2]
+			print "local_information: ", local_information
 		return potential_inserts, local_information
 
 	def validate_time_windows(self, Locations, selected):
