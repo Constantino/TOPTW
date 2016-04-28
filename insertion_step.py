@@ -260,10 +260,11 @@ class insertion_step:
 
 	def select_potential_location(self, Locations):
 
-		percentage = 30 #percent
+		
 		ratios = [e.ratio for e in Locations]
 		#Get radio value to select potential locations to choose
-		selection_point = sum(ratios)*percentage/100
+		ratio_max = max(ratios)
+		selection_point = ratio_max - 0.3*(ratio_max - min(ratios))
 		potential_locations = [e for e in Locations if e.ratio >= selection_point]
 
 		len_pot = len(potential_locations)-1
