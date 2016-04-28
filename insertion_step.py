@@ -241,26 +241,54 @@ class insertion_step:
 				shift = self.ShiftSim(tmp, selected[s].id_location,Locations[l].id_location,selected[s+1].id_location, times)
 				ratio = Locations[l].score*1.0/shift if shift > 0 else 1
 				
-				if ratio > local[1]:
-					local[0] = Locations[l]
-					local[1] = ratio
-					local[2] = s #after this index
-				print "--- ratio: ", ratio
-			print "local: ",local
-			potential_inserts.append(local[0])
-			local_information[local[0].id_location] = local[2]
-			print "local_information: ", local_information
+				#validate time windows
+				if self.validate_time_windows(Locations,Locations[l], s, times):
+
+					if ratio > local[1]:
+						local[0] = Locations[l]
+						local[1] = ratio
+						local[2] = s #after this index
+					print "--- ratio: ", ratio
+
+			if local[1] != -1:
+				print "local: ",local
+				potential_inserts.append(local[0])
+				local_information[local[0].id_location] = local[2]
+				print "local_information: ", local_information
+
 		return potential_inserts, local_information
 
-	def validate_time_windows(self, Locations, selected):
+	def validate_time_windows(self, selected_locations, location, index, times):
+		
+		#BUG
+		selected_locations.insert(index+1,location)
+		
+		req_time = 1
 
-		#here goes all logic
+		#Update properties from 
+		print "updating shift"
+		selected_locations = self.update_shift(selected_locations,times)
+		
+		selected_locations = self.update_max_shift(selected_locations)
+		
+		selected_locations = self.update_leave(selected_locations)
+		print "updating arrival"
+		selected_locations = self.update_arrival(selected_locations,times)
+			
+		print "updating wait"
+		selected_locations = self.update_wait(selected_locations)
+		
+		print "updating ratio"
+		selected_locations = self.update_ratio(selected_locations)
 
-		return
+		for e in selected_locations:
+			if e.arrival >= (e.closing - req_time):
+				return False
+		
+		return True 
 
 	def select_potential_location(self, Locations):
 
-		
 		ratios = [e.ratio for e in Locations]
 		#Get radio value to select potential locations to choose
 		ratio_max = max(ratios)
