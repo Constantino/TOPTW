@@ -1,6 +1,26 @@
 import random
+import copy
 
 class insertion_step:
+
+	def update_stuff(self, locations, times, start):
+
+		req_time = 1
+
+		for i in range(1,len(locations)-1):
+
+			if i == 1:
+				locations[i].arrival = self.estimateArrival(i,i+1,times,start)
+				locations[i].shift = self.Shift( locations, i , i-1, times, start)
+			else:
+				locations[i].arrival = self.estimateArrival(i,i+1,times,locations[i-1].leave)
+				locations[i].shift = self.Shift( locations, i , i-1, times, locations[i-1].leave)
+
+			locations[i].wait = self.wait(locations[i].opening,locations[i].arrival)
+			locations[i].leave = locations[i].arrival + locations[i].wait + req_time
+			locations[i].ratio = self.ratio(locations,i)
+
+		return locations
 
 	def wait(self, opening,arrival):
 		#Wait: in case of arriving before the location opens, 
@@ -242,13 +262,22 @@ class insertion_step:
 				ratio = Locations[l].score*1.0/shift if shift > 0 else 1
 				
 				#validate time windows
-				if self.validate_time_windows(Locations,Locations[l], s, times):
-
+				
+				if self.validate_time_windows(selected,Locations[l], s, times):
+					print "TIME WINDOW VALIDATED: ",s
 					if ratio > local[1]:
 						local[0] = Locations[l]
 						local[1] = ratio
 						local[2] = s #after this index
 					print "--- ratio: ", ratio
+				
+				"""
+				if ratio > local[1]:
+					local[0] = Locations[l]
+					local[1] = ratio
+					local[2] = s #after this index
+					print "--- ratio: ", ratio
+				"""
 
 			if local[1] != -1:
 				print "local: ",local
@@ -258,13 +287,38 @@ class insertion_step:
 
 		return potential_inserts, local_information
 
-	def validate_time_windows(self, selected_locations, location, index, times):
+	def validate_time_windows(self, s_l, location, index, times):
 		
 		#BUG
+		selected_locations = copy.copy(s_l)
 		selected_locations.insert(index+1,location)
-		
-		req_time = 1
 
+		print "validate_time_windows:"
+		print "s index: ",index
+		print "location to insert: ",location.id_location
+
+		"""
+		for e in selected_locations:
+			print "-- location ID: ",e.id_location
+			print "-- name: ",e.name
+			print "-- score: ",e.score
+			print "-- opening: ",e.opening
+			print "-- closing: ",e.closing
+			print "-- arrival: ",e.arrival
+			print "-- wait: ",e.wait
+			print "-- max_shift: ",e.max_shift
+			print "-- shift: ",e.shift
+			print "-- ratio: ",e.ratio
+			print "-- leave: ",e.leave
+			print " "
+		"""
+
+		req_time = 1
+		start = 8
+
+		selected_locations = self.update_stuff(selected_locations,times,start)
+
+		"""
 		#Update properties from 
 		print "updating shift"
 		selected_locations = self.update_shift(selected_locations,times)
@@ -281,8 +335,12 @@ class insertion_step:
 		print "updating ratio"
 		selected_locations = self.update_ratio(selected_locations)
 
+		"""
+
 		for e in selected_locations:
+			print "TW --- arrival: ",e.arrival, "closing: ",e.closing
 			if e.arrival >= (e.closing - req_time):
+
 				return False
 		
 		return True 

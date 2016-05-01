@@ -24,7 +24,7 @@ def print_locations(Locations):
 		
 
 start = 8 #hours
-end = 24 #hours
+end = 23 #hours
 n = 5 #no. elements
 instance = random_instance()
 
@@ -53,6 +53,9 @@ selected_locations.append(Locations[0])
 #xprint "append: ",Locations[len(Locations)-1].id_location
 selected_locations.append(Locations[len(Locations)-1])
 #<exp>
+
+req_t = 1
+
 while len(Locations) > 2:
 	print "***---***"
 	potential_inserts,local_information = InsertionStep.simulate_insertion(Locations, selected_locations, times)
@@ -68,21 +71,40 @@ while len(Locations) > 2:
 	Locations.remove(selected_one)
 	print "***---***"
 
+	selected_locations = InsertionStep.update_stuff(selected_locations,times,start)
+
+	"""
+	for index in range(len(selected_locations)):
+		if index > before:
+			selected_locations[index].arrival = InsertionStep.estimateArrival(index-1,index,times,selected_locations[index-1].leave)	
+			print "update - index: ",index," arrival: ",selected_locations[index].arrival
+	"""
+
+	#selected_locations = InsertionStep.update_locations(selected_locations,times,start,end)
+
+	#print "updating shift"
+	#selected_locations = InsertionStep.update_shift(selected_locations,times)
 	
-	print "updating shift"
-	selected_locations = InsertionStep.update_shift(selected_locations,times)
+	#selected_locations = InsertionStep.update_max_shift(selected_locations)
 	
-	selected_locations = InsertionStep.update_max_shift(selected_locations)
-	
-	selected_locations = InsertionStep.update_leave(selected_locations)
+	"""
 	print "updating arrival"
 	selected_locations = InsertionStep.update_arrival(selected_locations,times)
-		
 	print "updating wait"
 	selected_locations = InsertionStep.update_wait(selected_locations)
+
+	#selected_locations = InsertionStep.update_max_shift(selected_locations)
+	#selected_locations = InsertionStep.update_shift(selected_locations,times)
+	
+	print "updating leave"	
+	selected_locations = InsertionStep.update_leave(selected_locations)
 	
 	print "updating ratio"
 	selected_locations = InsertionStep.update_ratio(selected_locations)
+	"""
+
+print_locations(selected_locations)
+
 
 
 
@@ -101,7 +123,7 @@ while len(Locations)>3: #number of index > 2; where "2" represents start and end
 	
 	selected_locations = InsertionStep.insert_location(selected_locations,selected,times,start)
 	print "len locations: ", len(Locations)
-"""
+
 #</exp>
 #print "last one: ", Locations[1].name
 #selected_locations = InsertionStep.insert_location(selected_locations,Locations[1],times,start)
@@ -110,23 +132,19 @@ while len(Locations)>3: #number of index > 2; where "2" represents start and end
 #selected_locations.append(Locations[len(Locations)-1])
 
 
-"""
 #Update Tour Locations after location_j
 for x in range(selected_locations.index(selected_locations[1]),len(selected_locations)-2):
 	selected_locations = InsertionStep.update_after_insertion(x,selected_locations,times,start,end)
-"""
 
-"""	
 #Update Tour Locations before location_j
 for x in range(0,selected_locations.index(selected_locations[1])-1):
 	selected_locations[x].max_shift = maxShift(selected_locations, 0, selected_locations[x].opening, Locations[x].closing, Locations[x].arrival, times,start,end)
-"""
+
 
 #_Locations = InsertionStep.update_locations(selected_locations,times,start,end)
 
-print_locations(selected_locations)
 
-"""
+
 print "Test of shake step"
 ILS = ILS()
 print_locations(ILS.shake(selected_locations,1,1))
