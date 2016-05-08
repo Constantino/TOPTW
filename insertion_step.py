@@ -356,6 +356,11 @@ class insertion_step:
 		len_pot = len(potential_locations)-1
 		index = random.randint(0,len_pot)
 		location_selected = potential_locations[index]
+		print "||||"
+		print "selection_point: ", selection_point
+		print "|||| *** len_pot: ",len_pot
+		print "|||| *** location: ", location_selected.id_location," index: ", index
+		print "||||"
 
 		print "selection_point: ",selection_point
 		return location_selected
