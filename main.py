@@ -28,9 +28,9 @@ end = 23 #hours
 n = 5 #no. elements
 instance = random_instance()
 
-Locations = instance.generate(n,start,end,5)
+Locations = instance.generate(n,start,end)
 
-times = instance.generate_times(n,5)
+times = instance.generate_times(n)
 
 print_locations(Locations)
 
