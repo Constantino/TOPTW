@@ -64,7 +64,38 @@ def getTour(Locations, times, start, end):
 
 	print_locations(selected_locations)
 
-	return selected_locations
+	return selected_locations, Locations
+
+def completeTour(Locations, selected_locations, times, start, end):
+	while len(Locations) > 2:
+		print "***---***"
+		potential_inserts,local_information = InsertionStep.simulate_insertion(Locations, selected_locations, times)
+		print "potential_inserts:"
+		print_locations( potential_inserts )
+		print "</potential_inserts"
+
+		selected_one =  InsertionStep.select_potential_location(potential_inserts)
+		print "selected one : ",selected_one.id_location
+		before = local_information[selected_one.id_location]
+		print "insert after : ",before
+		selected_locations.insert(before+1,selected_one)
+		Locations.remove(selected_one)
+		print "***---***"
+		selected_locations = InsertionStep.update_stuff(selected_locations,times,start)
+
+	return selected_locations, Locations
+
+
+def shake(Locations, R,S):
+	ln_loc = len(Locations) 
+	for l in range(S,S+R):
+		i = 0 if l >= (ln_loc-1) else l
+		if ln_loc > 1 and i < (ln_loc-1) and i > 0 :
+			print "shake -> removing location: ",Locations[i].id_location
+			Locations.remove(Locations[i])
+
+	return Locations
+
 
 start = 8 #hours
 end = 23 #hours
@@ -84,11 +115,81 @@ for e in times:
 InsertionStep = insertion_step()
 
 
-#ILS
+###########################################
+#########			ILS			 ##########
+###########################################
 
-tour = getTour(Locations, times, start, end)
+#tour = getTour(Locations, times, start, end)
+#print "Tour ratio: ", getTourRatio(tour)
 
-print "Tour ratio: ", getTourRatio(tour)
+
+S = 1
+R = 1
+
+NoImprovementCounter = 0
+SmallestTourSize = -1
+TourFlag = 0
+
+NewTour, RestOfLocations = getTour(Locations, times, start, end)
+
+BestFound = {"ratio": getTourRatio(NewTour), "tour":NewTour}
+
+tour = []
+
+#Print new tour
+print_locations(BestFound['tour'])
+
+print "#############################"
+print "#########	ILS	   #########"
+print "#############################"
+
+while NoImprovementCounter < 3:
+	
+	#CompleteTour
+	if TourFlag == 1:
+		print "completeTour"
+		NewTour, RestOfLocations = completeTour(RestOfLocations, tour, times, start, end)
+		print_locations(NewTour)
+
+	TourRatio = getTourRatio(NewTour)
+	ln_NewTour = len(NewTour)
+
+	if SmallestTourSize == -1 or ln_NewTour < SmallestTourSize:
+		SmallestTourSize = ln_NewTour
+
+	print "++++++++++++++++++++++++++++++++++"
+	if BestFound['ratio'] < TourRatio:
+		#Assign new tour as local optimum
+		print "======================================"
+		print "new best found"
+		BestFound['tour'] = NewTour
+		BestFound['ratio'] = TourRatio
+
+		R = 1
+		NoImprovementCounter = 0
+
+	else:
+		NoImprovementCounter += 1
+	
+	print "++++++++++++++++++++++++++++++++++"
+
+	tour = shake(BestFound['tour'][:], R, S)
+	TourFlag = 1
+
+	S = S + R
+	R = R + 1
+
+	if S >= SmallestTourSize:
+		S = S - SmallestTourSize
+
+	if R == (1.0*n/(3*n)):
+		R = 1
+
+print "###########################"
+print "###      BEST FOUND     ###"
+print "###########################"
+
+print_locations(BestFound['tour'])
 
 
 
