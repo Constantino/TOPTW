@@ -23,14 +23,57 @@ def print_locations(Locations):
 		print " "
 		
 
+def getTourRatio(Locations):
+	ratio = 0
+	for e in Locations:
+		ratio += e.ratio
+
+	return ratio
+
+
+def getTour(Locations, times, start, end):
+	#Initialize all locations as if each of them where inserted between start and end of tour
+	Locations = InsertionStep.update_locations(Locations,times,start,end)
+
+	print_locations(Locations)
+	print "........"
+	selected_locations = []
+
+
+	#Add start location to the tour
+	selected_locations.append(Locations[0])
+	selected_locations.append(Locations[len(Locations)-1])
+
+	req_t = 1
+
+	while len(Locations) > 2:
+		print "***---***"
+		potential_inserts,local_information = InsertionStep.simulate_insertion(Locations, selected_locations, times)
+		print "potential_inserts:"
+		print_locations( potential_inserts )
+		print "</potential_inserts"
+
+		selected_one =  InsertionStep.select_potential_location(potential_inserts)
+		print "selected one : ",selected_one.id_location
+		before = local_information[selected_one.id_location]
+		print "insert after : ",before
+		selected_locations.insert(before+1,selected_one)
+		Locations.remove(selected_one)
+		print "***---***"
+		selected_locations = InsertionStep.update_stuff(selected_locations,times,start)
+
+	print_locations(selected_locations)
+
+	return selected_locations
+
 start = 8 #hours
 end = 23 #hours
 n = 5 #no. elements
 instance = random_instance()
 
-Locations = instance.generate(n,start,end)
+Locations = instance.generate(n,start,end,5)
 
-times = instance.generate_times(n)
+times = instance.generate_times(n,5)
 
 print_locations(Locations)
 
@@ -40,38 +83,12 @@ for e in times:
 
 InsertionStep = insertion_step()
 
-#Initialize all locations as if each of them where inserted between start and end of tour
-Locations = InsertionStep.update_locations(Locations,times,start,end)
 
-print_locations(Locations)
-print "........"
-selected_locations = []
+#ILS
+
+tour = getTour(Locations, times, start, end)
+
+print "Tour ratio: ", getTourRatio(tour)
 
 
-#Add start location to the tour
-selected_locations.append(Locations[0])
-#xprint "append: ",Locations[len(Locations)-1].id_location
-selected_locations.append(Locations[len(Locations)-1])
-#<exp>
 
-req_t = 1
-
-while len(Locations) > 2:
-	print "***---***"
-	potential_inserts,local_information = InsertionStep.simulate_insertion(Locations, selected_locations, times)
-	print "potential_inserts:"
-	print_locations( potential_inserts )
-	print "</potential_inserts"
-
-	selected_one =  InsertionStep.select_potential_location(potential_inserts)
-	print "selected one : ",selected_one.id_location
-	before = local_information[selected_one.id_location]
-	print "insert after : ",before
-	selected_locations.insert(before+1,selected_one)
-	Locations.remove(selected_one)
-	print "***---***"
-
-	selected_locations = InsertionStep.update_stuff(selected_locations,times,start)
-	
-
-print_locations(selected_locations)
