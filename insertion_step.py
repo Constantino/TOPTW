@@ -181,7 +181,7 @@ class insertion_step:
 
 		for l in range(1,len(Locations)-1):
 			Locations[l].wait = self.wait(Locations[l].opening,Locations[l].arrival)
-			print "wait: ",Locations[l].wait, " --- l: ",l, " opening: ",Locations[l].opening, " arrival: ",Locations[l].arrival
+			#print "wait: ",Locations[l].wait, " --- l: ",l, " opening: ",Locations[l].opening, " arrival: ",Locations[l].arrival
 		return Locations
 
 	def update_arrival(self, Locations,times):
@@ -231,19 +231,19 @@ class insertion_step:
 
 	def insert_location(self, Locations, selected, times, start):
 		ratio_list = []
-		print len(Locations)
+		#print len(Locations)
 		for l in range(len(Locations)-1):
 			Locations_tmp = [Locations[l],selected,Locations[l+1]]
 			shift = self.Shift(Locations_tmp, l+1, l, times, start)
 			ratio_list.append(selected.score*1.0/shift if shift > 0 else 1)
 
-		print "len ratio_list: ",len(ratio_list)
+		#print "len ratio_list: ",len(ratio_list)
 		selected_index = shift_list.index(max(ratio_list))+1
 
-		print "<shifts>"
-		print shift_list
-		print "insert at index: ",selected_index
-		print "</shifts>"
+		#print "<shifts>"
+		#print shift_list
+		#print "insert at index: ",selected_index
+		#print "</shifts>"
 		Locations.insert(selected_index,selected)
 
 		return Locations
@@ -256,7 +256,7 @@ class insertion_step:
 			local = [0,-1,-1]
 			for s in range(len(selected)-1):
 				tmp = [ selected[s],Locations[l],selected[s+1] ]
-				print "i:",selected[s].id_location," j:",Locations[l].id_location," k: ",selected[s+1].id_location
+				#print "i:",selected[s].id_location," j:",Locations[l].id_location," k: ",selected[s+1].id_location
 				
 				shift = self.ShiftSim(tmp, selected[s].id_location,Locations[l].id_location,selected[s+1].id_location, times)
 				ratio = Locations[l].score*1.0/shift if shift > 0 else 1
@@ -269,7 +269,7 @@ class insertion_step:
 						local[0] = Locations[l]
 						local[1] = ratio
 						local[2] = s #after this index
-					print "--- ratio: ", ratio
+					#print "--- ratio: ", ratio
 				
 				"""
 				if ratio > local[1]:
@@ -280,10 +280,10 @@ class insertion_step:
 				"""
 
 			if local[1] != -1:
-				print "local: ",local
+				#print "local: ",local
 				potential_inserts.append(local[0])
 				local_information[local[0].id_location] = local[2]
-				print "local_information: ", local_information
+				#print "local_information: ", local_information
 
 		return potential_inserts, local_information
 
@@ -338,7 +338,7 @@ class insertion_step:
 		"""
 
 		for e in selected_locations:
-			print "TW --- arrival: ",e.arrival, "closing: ",e.closing
+			#print "TW --- arrival: ",e.arrival, "closing: ",e.closing
 			if e.arrival >= (e.closing - req_time):
 
 				return False
@@ -356,13 +356,13 @@ class insertion_step:
 		len_pot = len(potential_locations)-1
 		index = random.randint(0,len_pot)
 		location_selected = potential_locations[index]
-		print "||||"
-		print "selection_point: ", selection_point
-		print "|||| *** len_pot: ",len_pot
-		print "|||| *** location: ", location_selected.id_location," index: ", index
-		print "||||"
+		#print "||||"
+		#print "selection_point: ", selection_point
+		#print "|||| *** len_pot: ",len_pot
+		#print "|||| *** location: ", location_selected.id_location," index: ", index
+		#print "||||"
 
-		print "selection_point: ",selection_point
+		#print "selection_point: ",selection_point
 		return location_selected
 
 
