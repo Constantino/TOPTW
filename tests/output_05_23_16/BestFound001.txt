@@ -1,0 +1,118 @@
+###########################
+###      BEST FOUND     ###
+###########################
+TOUR: 
+Start:  8
+End:  23
+Locations:
+-- location ID:  0
+-- name:  start
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  7
+-- name:  Loc7
+-- score:  2
+-- opening:  8
+-- closing:  11
+-- arrival:  9.26666666667
+-- wait:  0
+-- max_shift:  1.98333333333
+-- shift:  1.65
+-- ratio:  1.21212121212
+-- leave:  10.2666666667
+ 
+-- location ID:  7
+-- name:  Loc7
+-- score:  2
+-- opening:  8
+-- closing:  11
+-- arrival:  9.26666666667
+-- wait:  0
+-- max_shift:  1.98333333333
+-- shift:  1.65
+-- ratio:  1.21212121212
+-- leave:  10.2666666667
+ 
+-- location ID:  8
+-- name:  Loc8
+-- score:  3
+-- opening:  11
+-- closing:  12
+-- arrival:  10.95
+-- wait:  0.05
+-- max_shift:  2.35
+-- shift:  4.06666666667
+-- ratio:  0.737704918033
+-- leave:  12.0
+ 
+-- location ID:  4
+-- name:  Loc4
+-- score:  3
+-- opening:  10
+-- closing:  19
+-- arrival:  12.0166666667
+-- wait:  0
+-- max_shift:  10.3166666667
+-- shift:  10.3166666667
+-- ratio:  0.290791599354
+-- leave:  13.0166666667
+ 
+-- location ID:  1
+-- name:  Loc1
+-- score:  2
+-- opening:  10
+-- closing:  21
+-- arrival:  13.8166666667
+-- wait:  0
+-- max_shift:  12.2666666667
+-- shift:  12.2666666667
+-- ratio:  0.163043478261
+-- leave:  14.8166666667
+ 
+-- location ID:  3
+-- name:  Loc3
+-- score:  2
+-- opening:  11
+-- closing:  17
+-- arrival:  15.1166666667
+-- wait:  0
+-- max_shift:  7.38333333333
+-- shift:  7.38333333333
+-- ratio:  0.270880361174
+-- leave:  16.1166666667
+ 
+-- location ID:  5
+-- name:  Loc5
+-- score:  1
+-- opening:  8
+-- closing:  19
+-- arrival:  16.85
+-- wait:  0
+-- max_shift:  9.63333333333
+-- shift:  9.63333333333
+-- ratio:  0.103806228374
+-- leave:  17.85
+ 
+-- location ID:  9
+-- name:  End
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+OriginalSolution:  2.94547871654
+EnhancedSolution:  3.99046900944
+

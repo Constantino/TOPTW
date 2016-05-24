@@ -1,0 +1,529 @@
+TOUR: 
+Start:  8
+End:  23
+Locations:
+-- location ID:  0
+-- name:  start
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  1
+-- name:  Loc1
+-- score:  5
+-- opening:  10
+-- closing:  18
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  2
+-- name:  Loc2
+-- score:  4
+-- opening:  11
+-- closing:  16
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  3
+-- name:  Loc3
+-- score:  4
+-- opening:  8
+-- closing:  10
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  4
+-- name:  Loc4
+-- score:  1
+-- opening:  8
+-- closing:  14
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  5
+-- name:  End
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+........
+***-- loop --***
+selected one :  3
+***-- loop --***
+selected one :  2
+***-- loop --***
+selected one :  1
+***-- loop --***
+selected one :  4
+#############################
+#########	ILS	   #########
+#############################
+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++
+completeTour
+TOUR: 
+Start:  8
+End:  23
+Locations:
+-- location ID:  0
+-- name:  start
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  3
+-- name:  Loc3
+-- score:  4
+-- opening:  8
+-- closing:  10
+-- arrival:  8.7
+-- wait:  0
+-- max_shift:  1.2
+-- shift:  1.2
+-- ratio:  3.33333333333
+-- leave:  9.7
+ 
+-- location ID:  4
+-- name:  Loc4
+-- score:  1
+-- opening:  8
+-- closing:  14
+-- arrival:  12.35
+-- wait:  0
+-- max_shift:  5.61666666667
+-- shift:  5.61666666667
+-- ratio:  0.178041543027
+-- leave:  13.35
+ 
+-- location ID:  1
+-- name:  Loc1
+-- score:  5
+-- opening:  10
+-- closing:  18
+-- arrival:  13.6
+-- wait:  0
+-- max_shift:  8.96666666667
+-- shift:  8.96666666667
+-- ratio:  0.557620817844
+-- leave:  14.6
+ 
+-- location ID:  5
+-- name:  End
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++
+completeTour
+TOUR: 
+Start:  8
+End:  23
+Locations:
+-- location ID:  0
+-- name:  start
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  3
+-- name:  Loc3
+-- score:  4
+-- opening:  8
+-- closing:  10
+-- arrival:  8.7
+-- wait:  0
+-- max_shift:  1.2
+-- shift:  1.2
+-- ratio:  3.33333333333
+-- leave:  9.7
+ 
+-- location ID:  2
+-- name:  Loc2
+-- score:  4
+-- opening:  11
+-- closing:  16
+-- arrival:  10.3166666667
+-- wait:  0.683333333333
+-- max_shift:  6.41666666667
+-- shift:  7.1
+-- ratio:  0.56338028169
+-- leave:  12.0
+ 
+-- location ID:  1
+-- name:  Loc1
+-- score:  5
+-- opening:  10
+-- closing:  18
+-- arrival:  13.6
+-- wait:  0
+-- max_shift:  8.96666666667
+-- shift:  8.96666666667
+-- ratio:  0.557620817844
+-- leave:  14.6
+ 
+-- location ID:  5
+-- name:  End
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++
+completeTour
+TOUR: 
+Start:  8
+End:  23
+Locations:
+-- location ID:  0
+-- name:  start
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  3
+-- name:  Loc3
+-- score:  4
+-- opening:  8
+-- closing:  10
+-- arrival:  8.7
+-- wait:  0
+-- max_shift:  1.2
+-- shift:  1.2
+-- ratio:  3.33333333333
+-- leave:  9.7
+ 
+-- location ID:  4
+-- name:  Loc4
+-- score:  1
+-- opening:  8
+-- closing:  14
+-- arrival:  12.9166666667
+-- wait:  0
+-- max_shift:  5.61666666667
+-- shift:  5.61666666667
+-- ratio:  0.178041543027
+-- leave:  13.9166666667
+ 
+-- location ID:  2
+-- name:  Loc2
+-- score:  4
+-- opening:  11
+-- closing:  16
+-- arrival:  11.6666666667
+-- wait:  0
+-- max_shift:  6.41666666667
+-- shift:  7.1
+-- ratio:  0.56338028169
+-- leave:  12.6666666667
+ 
+-- location ID:  4
+-- name:  Loc4
+-- score:  1
+-- opening:  8
+-- closing:  14
+-- arrival:  12.9166666667
+-- wait:  0
+-- max_shift:  5.61666666667
+-- shift:  5.61666666667
+-- ratio:  0.178041543027
+-- leave:  13.9166666667
+ 
+-- location ID:  5
+-- name:  End
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++
+completeTour
+TOUR: 
+Start:  8
+End:  23
+Locations:
+-- location ID:  0
+-- name:  start
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  1
+-- name:  Loc1
+-- score:  5
+-- opening:  10
+-- closing:  18
+-- arrival:  14.2166666667
+-- wait:  0
+-- max_shift:  8.96666666667
+-- shift:  10.2666666667
+-- ratio:  0.487012987013
+-- leave:  15.2166666667
+ 
+-- location ID:  2
+-- name:  Loc2
+-- score:  4
+-- opening:  11
+-- closing:  16
+-- arrival:  11.6166666667
+-- wait:  0
+-- max_shift:  6.41666666667
+-- shift:  8.71666666667
+-- ratio:  0.458891013384
+-- leave:  12.6166666667
+ 
+-- location ID:  4
+-- name:  Loc4
+-- score:  1
+-- opening:  8
+-- closing:  14
+-- arrival:  12.9666666667
+-- wait:  0
+-- max_shift:  5.61666666667
+-- shift:  5.61666666667
+-- ratio:  0.178041543027
+-- leave:  13.9666666667
+ 
+-- location ID:  1
+-- name:  Loc1
+-- score:  5
+-- opening:  10
+-- closing:  18
+-- arrival:  14.2166666667
+-- wait:  0
+-- max_shift:  8.96666666667
+-- shift:  10.2666666667
+-- ratio:  0.487012987013
+-- leave:  15.2166666667
+ 
+-- location ID:  5
+-- name:  End
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++
+completeTour
+TOUR: 
+Start:  8
+End:  23
+Locations:
+-- location ID:  0
+-- name:  start
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  3
+-- name:  Loc3
+-- score:  4
+-- opening:  8
+-- closing:  10
+-- arrival:  8.7
+-- wait:  0
+-- max_shift:  1.2
+-- shift:  1.2
+-- ratio:  3.33333333333
+-- leave:  9.7
+ 
+-- location ID:  2
+-- name:  Loc2
+-- score:  4
+-- opening:  11
+-- closing:  16
+-- arrival:  10.3166666667
+-- wait:  0.683333333333
+-- max_shift:  6.41666666667
+-- shift:  8.71666666667
+-- ratio:  0.458891013384
+-- leave:  12.0
+ 
+-- location ID:  4
+-- name:  Loc4
+-- score:  1
+-- opening:  8
+-- closing:  14
+-- arrival:  12.35
+-- wait:  0
+-- max_shift:  5.61666666667
+-- shift:  5.61666666667
+-- ratio:  0.178041543027
+-- leave:  13.35
+ 
+-- location ID:  1
+-- name:  Loc1
+-- score:  5
+-- opening:  10
+-- closing:  18
+-- arrival:  13.6
+-- wait:  0
+-- max_shift:  8.96666666667
+-- shift:  8.96666666667
+-- ratio:  0.557620817844
+-- leave:  14.6
+ 
+-- location ID:  5
+-- name:  End
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++
+completeTour
+TOUR: 
+Start:  8
+End:  23
+Locations:
+-- location ID:  0
+-- name:  start
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+-- location ID:  3
+-- name:  Loc3
+-- score:  4
+-- opening:  8
+-- closing:  10
+-- arrival:  12.9166666667
+-- wait:  0
+-- max_shift:  1.2
+-- shift:  1.2
+-- ratio:  3.33333333333
+-- leave:  13.9166666667
+ 
+-- location ID:  4
+-- name:  Loc4
+-- score:  1
+-- opening:  8
+-- closing:  14
+-- arrival:  10.3166666667
+-- wait:  0
+-- max_shift:  5.61666666667
+-- shift:  5.61666666667
+-- ratio:  0.178041543027
+-- leave:  11.3166666667
+ 
+-- location ID:  1
+-- name:  Loc1
+-- score:  5
+-- opening:  10
+-- closing:  18
+-- arrival:  11.6666666667
+-- wait:  0
+-- max_shift:  8.96666666667
+-- shift:  8.96666666667
+-- ratio:  0.557620817844
+-- leave:  12.6666666667
+ 
+-- location ID:  5
+-- name:  End
+-- score:  0
+-- opening:  8
+-- closing:  23
+-- arrival:  0
+-- wait:  0
+-- max_shift:  0
+-- shift:  0
+-- ratio:  0
+-- leave:  0
+ 
+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++
+completeTour

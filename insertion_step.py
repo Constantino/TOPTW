@@ -264,12 +264,13 @@ class insertion_step:
 				#validate time windows
 				
 				if self.validate_time_windows(selected,Locations[l], s, times):
-					print "TIME WINDOW VALIDATED: ",s
+					#print "TIME WINDOW VALIDATED: ",s
 					if ratio > local[1]:
 						local[0] = Locations[l]
 						local[1] = ratio
 						local[2] = s #after this index
 					#print "--- ratio: ", ratio
+				
 				
 				"""
 				if ratio > local[1]:
@@ -293,9 +294,11 @@ class insertion_step:
 		selected_locations = copy.copy(s_l)
 		selected_locations.insert(index+1,location)
 
+		"""
 		print "validate_time_windows:"
 		print "s index: ",index
 		print "location to insert: ",location.id_location
+		"""
 
 		"""
 		for e in selected_locations:
@@ -347,6 +350,9 @@ class insertion_step:
 
 	def select_potential_location(self, Locations):
 
+		if len(Locations) == 0:
+			return []
+		
 		ratios = [e.ratio for e in Locations]
 		#Get radio value to select potential locations to choose
 		ratio_max = max(ratios)
@@ -364,6 +370,8 @@ class insertion_step:
 
 		#print "selection_point: ",selection_point
 		return location_selected
+
+
 
 
 

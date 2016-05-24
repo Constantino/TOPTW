@@ -17,7 +17,7 @@ class random_instance:
 					times[i][j] = times[j][i]
 
 		return times
-
+	"""
 	def generate_times(self, n,h):
 
 		times = [
@@ -30,6 +30,7 @@ class random_instance:
 		]
 
 		return times
+	"""
 
 
 	def generate(self, n, start, end):
@@ -77,6 +78,7 @@ class random_instance:
 
 		return self.Locations
 
+	"""
 	def generate(self, n, start, end,h):
 
 		Locations = []
@@ -145,7 +147,7 @@ class random_instance:
 		Locations[4].leave = 0
 
 		return Locations
-
+	"""
 
 
 					
