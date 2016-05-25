@@ -7,6 +7,12 @@ class random_instance:
 	start = 0
 	end = 0
 
+	def load_instance(self):
+
+		
+
+		return 
+
 	def generate_times(self, n):
 
 		times = [ [ 0 ]*(i+1)+[random.randint(0,60)/60.0 for j in range(i,n) if j > i] for i in range(n) ]
