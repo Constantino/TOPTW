@@ -73,6 +73,7 @@ def getTour(Locations, times, start, end):
 		else:
 			break
 
+	selected_locations = InsertionStep.update_stuff(selected_locations,times,start)
 	#print_locations(selected_locations)
 
 	return selected_locations, Locations
@@ -104,6 +105,8 @@ def completeTour(Locations, selected_locations, times, start, end):
 
 		else:
 			break
+
+	selected_locations = InsertionStep.update_stuff(selected_locations,times,start)
 
 	return selected_locations, Locations
 
@@ -195,6 +198,7 @@ while NoImprovementCounter < 150:
 	if TourFlag == 1:
 		print "completeTour"
 		NewTour, RestOfLocations = completeTour(RestOfLocations, tour, times, start, end)
+
 		print_locations(NewTour)
 		TourRatio = getTourRatio(NewTour)
 	
@@ -233,6 +237,7 @@ while NoImprovementCounter < 150:
 	if R >= ( len(BestFound['tour'])/2.0 ) - 2: #No eliminar > del 50% de elementos en el tour
 		R = 1
 
+
 print "** NoImprovementCounter = ",NoImprovementCounter
 
 print "###########################"
@@ -240,7 +245,9 @@ print "###      BEST FOUND     ###"
 print "###########################"
 
 print_locations(BestFound['tour'])
-
+BestFound['tour'] = InsertionStep.update_stuff(BestFound['tour'][:],times,start)
+print "###########################"
+print_locations(BestFound['tour'])
 print "OriginalSolution: ", getTourRatio( OriginalSolution )
 print "EnhancedSolution: ", getTourRatio( BestFound['tour'] )
 

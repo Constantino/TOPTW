@@ -3,6 +3,22 @@ import copy
 
 class insertion_step:
 
+	def tw(self, locations, times, start):
+
+		req_time = 1
+
+		for i in range(1, len(locations)-1):
+			
+			if i == 1:
+				locations[i].arrival = times[0][1]+start
+			else:
+				locations[i].arrival = self.estimateArrival(i-1,i,times,locations[i-1].leave)
+			
+			locations[i].wait = self.wait(locations[i].opening,locations[i].arrival)
+			locations[i].leave = locations[i].arrival + locations[i].wait + req_time
+
+		return locations
+
 	def update_stuff(self, locations, times, start):
 
 		req_time = 1
@@ -10,10 +26,12 @@ class insertion_step:
 		for i in range(1,len(locations)-1):
 
 			if i == 1:
-				locations[i].arrival = self.estimateArrival(i,i+1,times,start)
+				#locations[i].arrival = self.estimateArrival(i,i+1,times,start)
+				locations[i].arrival = self.estimateArrival(i-1,i,times,start)
 				locations[i].shift = self.Shift( locations, i , i-1, times, start)
 			else:
-				locations[i].arrival = self.estimateArrival(i,i+1,times,locations[i-1].leave)
+				#locations[i].arrival = self.estimateArrival(i,i+1,times,locations[i-1].leave)
+				locations[i].arrival = self.estimateArrival(i-1,i,times,locations[i-1].leave)
 				locations[i].shift = self.Shift( locations, i , i-1, times, locations[i-1].leave)
 
 			locations[i].wait = self.wait(locations[i].opening,locations[i].arrival)
@@ -352,7 +370,7 @@ class insertion_step:
 
 		if len(Locations) == 0:
 			return []
-		
+
 		ratios = [e.ratio for e in Locations]
 		#Get radio value to select potential locations to choose
 		ratio_max = max(ratios)
