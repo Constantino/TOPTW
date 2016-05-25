@@ -244,9 +244,7 @@ print "###########################"
 print "###      BEST FOUND     ###"
 print "###########################"
 
-print_locations(BestFound['tour'])
 BestFound['tour'] = InsertionStep.update_stuff(BestFound['tour'][:],times,start)
-print "###########################"
 print_locations(BestFound['tour'])
 print "OriginalSolution: ", getTourRatio( OriginalSolution )
 print "EnhancedSolution: ", getTourRatio( BestFound['tour'] )
