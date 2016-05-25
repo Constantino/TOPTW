@@ -95,6 +95,8 @@ def completeTour(Locations, selected_locations, times, start, end):
 			#print "selected one : ",selected_one.id_location
 			before = local_information[selected_one.id_location]
 			#print "insert after : ",before
+			
+			#if not IsDuplicate():
 			selected_locations.insert(before+1,selected_one)
 			Locations.remove(selected_one)
 			#print "***---***"
@@ -105,6 +107,11 @@ def completeTour(Locations, selected_locations, times, start, end):
 
 	return selected_locations, Locations
 
+def IsDuplicate(Tour, element):
+	for e in Tour:
+		if e.id_location == element.id_location:
+			return True
+	return False	
 
 def shake(RestOfLocations, Locations, R,S):
 	S += 1
@@ -124,7 +131,7 @@ def shake(RestOfLocations, Locations, R,S):
 
 start = 8 #hours
 end = 23 #hours
-n = 5 #no. elements
+n = 50 #no. elements
 instance = random_instance()
 
 Locations = instance.generate(n,start,end)
@@ -172,20 +179,26 @@ RestOfLocations.remove( RestOfLocations[-1])
 
 #print "OriginalSolution: ", getTourRatio( OriginalSolution )
 
+TourRatio = getTourRatio(NewTour)
+
 print "#############################"
 print "#########	ILS	   #########"
 print "#############################"
 
-while NoImprovementCounter < 10:
+while NoImprovementCounter < 150:
 
+	print "--- <RestOfLocations> ---"
+	print_locations(RestOfLocations)
+	print "--- </RestOfLocations> ---"
 
 	#CompleteTour
 	if TourFlag == 1:
 		print "completeTour"
 		NewTour, RestOfLocations = completeTour(RestOfLocations, tour, times, start, end)
 		print_locations(NewTour)
-
-	TourRatio = getTourRatio(NewTour)
+		TourRatio = getTourRatio(NewTour)
+	
+	
 	ln_NewTour = len(NewTour)
 
 	if SmallestTourSize == -1 or ln_NewTour < SmallestTourSize:
@@ -207,7 +220,8 @@ while NoImprovementCounter < 10:
 	
 	print "++++++++++++++++++++++++++++++++++"
 
-	tour = shake(RestOfLocations, BestFound['tour'][:], R, S)
+	#tour = shake(RestOfLocations, BestFound['tour'][:], R, S)
+	tour = shake(RestOfLocations, NewTour[:], R, S)
 	TourFlag = 1
 
 	S = S + R
