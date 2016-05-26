@@ -3,6 +3,7 @@ from insertion_step import insertion_step
 from ILS import ILS
 from instance_generator import random_instance
 import math
+import time
 
 def print_locations(Locations):
 	print "TOUR: "
@@ -150,6 +151,10 @@ print_locations(Locations)
 ##########################
 #NEW INVOCATION
 ##########################
+
+#start counting time
+start_time = time.time()
+
 start = 0 #hours
 end = 1236 #hours
 n = 100 #no. elements
@@ -274,10 +279,10 @@ BestFound['tour'] = InsertionStep.update_stuff(BestFound['tour'][:],times,start)
 nombre_instancia = "c101"
 bk = getTourRatio( OriginalSolution )
 ils = getTourRatio( BestFound['tour'] )
-time_elapsed = 0
+elapsed_time = time.time() - start_time
 gap = (bk-ils)/bk
 #print "OriginalSolution: ", getTourRatio( OriginalSolution )
 #print "EnhancedSolution: ", getTourRatio( BestFound['tour'] )
-print nombre_instancia,", ",bk,",",ils,",",time_elapsed,",",abs(gap)*100
+print nombre_instancia,", ",bk,",",ils,",",abs(gap)*100,",",elapsed_time
 
 
