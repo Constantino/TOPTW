@@ -211,7 +211,7 @@ print "#############################"
 print "#########	ILS	   #########"
 print "#############################"
 
-while NoImprovementCounter < 150:
+while NoImprovementCounter < 50:
 
 	print "--- <RestOfLocations> ---"
 	print_locations(RestOfLocations)
