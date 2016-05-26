@@ -24,11 +24,12 @@ class random_instance:
 
 		return times
 
-	def load_instance(self, n, start, end):
+	def load_instance(self, n, file_name):
 
 		n = n+2 # + start and end
 
-		file = open('c101.txt', 'r') #identify file name
+		#file = open('c101.txt', 'r') #identify file name
+		file = open(file_name, 'r') #identify file name
 
 		lines = file.readlines()
 
@@ -38,8 +39,8 @@ class random_instance:
 			new_lines.append( line.split() )
 
 
-		self.start = start
-		self.end = end
+		self.start = 0
+		self.end = float(new_lines[2][8])
 
 		for i in range(n):
 			self.Locations.append(location())
@@ -63,8 +64,8 @@ class random_instance:
 			elif i == n-1:
 				self.Locations[i].id_location = i
 				self.Locations[i].name = "End"
-				self.Locations[i].opening = start
-				self.Locations[i].closing = end
+				self.Locations[i].opening = self.start
+				self.Locations[i].closing = self.end
 				self.Locations[i].score = 0
 				self.Locations[i].wait = 0
 				self.Locations[i].max_shift = 0
@@ -90,7 +91,7 @@ class random_instance:
 				self.Locations[i].x = new_lines[i][1]
 				self.Locations[i].y = new_lines[i][2]
 
-		return self.Locations
+		return self.Locations, self.start, self.end
 
 	def generate_times(self, n):
 

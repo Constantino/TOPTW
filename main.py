@@ -4,6 +4,7 @@ from ILS import ILS
 from instance_generator import random_instance
 import math
 import time
+from sys import argv 
 
 def print_locations(Locations):
 	print "TOUR: "
@@ -151,138 +152,150 @@ print_locations(Locations)
 ##########################
 #NEW INVOCATION
 ##########################
+#instance = random_instance()
+#InsertionStep = insertion_step()
 
-#start counting time
-start_time = time.time()
+def main(id_file):
 
-start = 0 #hours
-end = 1236 #hours
-n = 100 #no. elements
+	#for eT in range(1,3):
+
+	#start counting time
+	start_time = time.time()
+
+	#start = 0 #hours
+	#end = 1236 #hours
+	n = 100 #no. elements
+
+	#instance = random_instance()
+
+	file_name = 'c10'+str(id_file)+'.txt'
+
+	Locations,start,end = instance.load_instance(n,file_name)
+
+	times = instance.generate_times_for_instances(len(Locations),Locations)
+
+	#print_locations(Locations)
+
+	##########################
+	#END NEW INVOCATION
+	##########################
+
+	"""
+	print "times:"
+	for e in times:
+		print e
+	"""
+
+	#InsertionStep = insertion_step()
+
+
+	###########################################
+	#########			ILS			 ##########
+	###########################################
+
+	#tour = getTour(Locations, times, start, end)
+	#print "Tour ratio: ", getTourRatio(tour)
+
+	S = 1
+	R = 1
+
+	NoImprovementCounter = 0
+	SmallestTourSize = -1
+	TourFlag = 0
+
+	NewTour, RestOfLocations = getTour(Locations, times, start, end)
+	OriginalSolution = NewTour[:]
+
+	BestFound = {"ratio": getTourRatio(NewTour), "tour":NewTour}
+
+	tour = []
+
+	#Print new tour
+	#print_locations(BestFound['tour'])
+
+
+	RestOfLocations.remove( RestOfLocations[0])
+	RestOfLocations.remove( RestOfLocations[-1])
+
+	#print "OriginalSolution: ", getTourRatio( OriginalSolution )
+
+	TourRatio = getTourRatio(NewTour)
+
+	#print "#############################"
+	#print "#########	ILS	   #########"
+	#print "#############################"
+
+	while NoImprovementCounter < 50:
+		"""
+		print "--- <RestOfLocations> ---"
+		print_locations(RestOfLocations)
+		print "--- </RestOfLocations> ---"
+		"""
+
+		#CompleteTour
+		if TourFlag == 1:
+			#print "completeTour"
+			NewTour, RestOfLocations = completeTour(RestOfLocations, tour, times, start, end)
+
+			#print_locations(NewTour)
+			TourRatio = getTourRatio(NewTour)
+		
+		
+		ln_NewTour = len(NewTour)
+
+		if SmallestTourSize == -1 or ln_NewTour < SmallestTourSize:
+			SmallestTourSize = ln_NewTour
+
+		#print "++++++++++++++++++++++++++++++++++"
+		if BestFound['ratio'] < TourRatio:
+			#Assign new tour as local optimum
+			#print "======================================"
+			#print "new best found"
+			BestFound['tour'] = NewTour
+			BestFound['ratio'] = TourRatio
+
+			R = 1
+			NoImprovementCounter = 0
+
+		else:
+			NoImprovementCounter += 1
+		
+		#print "++++++++++++++++++++++++++++++++++"
+
+		#tour = shake(RestOfLocations, BestFound['tour'][:], R, S)
+		tour = shake(RestOfLocations, NewTour[:], R, S)
+		TourFlag = 1
+
+		S = S + R
+		R = R + 1
+
+		if S >= SmallestTourSize:
+			S = S - SmallestTourSize
+
+		if R >= ( len(BestFound['tour'])/2.0 ) - 2: #No eliminar > del 50% de elementos en el tour
+			R = 1
+
+
+	#print "** NoImprovementCounter = ",NoImprovementCounter
+
+	#print "###########################"
+	#print "###      BEST FOUND     ###"
+	#print "###########################"
+
+	BestFound['tour'] = InsertionStep.update_stuff(BestFound['tour'][:],times,start)
+	#print_locations(BestFound['tour'])
+
+	nombre_instancia = file_name
+	bk = getTourRatio( OriginalSolution )
+	ils = getTourRatio( BestFound['tour'] )
+	elapsed_time = time.time() - start_time
+	gap = (bk-ils)/bk
+	#print "OriginalSolution: ", getTourRatio( OriginalSolution )
+	#print "EnhancedSolution: ", getTourRatio( BestFound['tour'] )
+	print nombre_instancia,", ",bk,",",ils,",",abs(gap)*100,",",elapsed_time
+
 
 instance = random_instance()
-
-Locations = instance.load_instance(n,start,end)
-
-times = instance.generate_times_for_instances(len(Locations),Locations)
-
-#print_locations(Locations)
-
-##########################
-#END NEW INVOCATION
-##########################
-
-"""
-print "times:"
-for e in times:
-	print e
-"""
-
 InsertionStep = insertion_step()
 
-
-###########################################
-#########			ILS			 ##########
-###########################################
-
-#tour = getTour(Locations, times, start, end)
-#print "Tour ratio: ", getTourRatio(tour)
-
-S = 1
-R = 1
-
-NoImprovementCounter = 0
-SmallestTourSize = -1
-TourFlag = 0
-
-NewTour, RestOfLocations = getTour(Locations, times, start, end)
-OriginalSolution = NewTour[:]
-
-BestFound = {"ratio": getTourRatio(NewTour), "tour":NewTour}
-
-tour = []
-
-#Print new tour
-#print_locations(BestFound['tour'])
-
-
-RestOfLocations.remove( RestOfLocations[0])
-RestOfLocations.remove( RestOfLocations[-1])
-
-#print "OriginalSolution: ", getTourRatio( OriginalSolution )
-
-TourRatio = getTourRatio(NewTour)
-
-#print "#############################"
-#print "#########	ILS	   #########"
-#print "#############################"
-
-while NoImprovementCounter < 50:
-	"""
-	print "--- <RestOfLocations> ---"
-	print_locations(RestOfLocations)
-	print "--- </RestOfLocations> ---"
-	"""
-
-	#CompleteTour
-	if TourFlag == 1:
-		#print "completeTour"
-		NewTour, RestOfLocations = completeTour(RestOfLocations, tour, times, start, end)
-
-		#print_locations(NewTour)
-		TourRatio = getTourRatio(NewTour)
-	
-	
-	ln_NewTour = len(NewTour)
-
-	if SmallestTourSize == -1 or ln_NewTour < SmallestTourSize:
-		SmallestTourSize = ln_NewTour
-
-	#print "++++++++++++++++++++++++++++++++++"
-	if BestFound['ratio'] < TourRatio:
-		#Assign new tour as local optimum
-		#print "======================================"
-		#print "new best found"
-		BestFound['tour'] = NewTour
-		BestFound['ratio'] = TourRatio
-
-		R = 1
-		NoImprovementCounter = 0
-
-	else:
-		NoImprovementCounter += 1
-	
-	#print "++++++++++++++++++++++++++++++++++"
-
-	#tour = shake(RestOfLocations, BestFound['tour'][:], R, S)
-	tour = shake(RestOfLocations, NewTour[:], R, S)
-	TourFlag = 1
-
-	S = S + R
-	R = R + 1
-
-	if S >= SmallestTourSize:
-		S = S - SmallestTourSize
-
-	if R >= ( len(BestFound['tour'])/2.0 ) - 2: #No eliminar > del 50% de elementos en el tour
-		R = 1
-
-
-#print "** NoImprovementCounter = ",NoImprovementCounter
-
-#print "###########################"
-#print "###      BEST FOUND     ###"
-#print "###########################"
-
-BestFound['tour'] = InsertionStep.update_stuff(BestFound['tour'][:],times,start)
-#print_locations(BestFound['tour'])
-
-nombre_instancia = "c101"
-bk = getTourRatio( OriginalSolution )
-ils = getTourRatio( BestFound['tour'] )
-elapsed_time = time.time() - start_time
-gap = (bk-ils)/bk
-#print "OriginalSolution: ", getTourRatio( OriginalSolution )
-#print "EnhancedSolution: ", getTourRatio( BestFound['tour'] )
-print nombre_instancia,", ",bk,",",ils,",",abs(gap)*100,",",elapsed_time
-
-
+main(int(argv[1]))
