@@ -21,7 +21,7 @@ class insertion_step:
 
 	def update_stuff(self, locations, times, start):
 
-		req_time = 90 #TIEMPO REQUERIDO
+		req_time = 10 #TIEMPO REQUERIDO
 
 		for i in range(1,len(locations)-1):
 

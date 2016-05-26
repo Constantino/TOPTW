@@ -492,7 +492,7 @@ Locations:
 -- name:  Loc4
 -- score:  1
 -- opening:  8
--- closing:  14
+-- closing:  14 
 -- arrival:  10.3166666667
 -- wait:  0
 -- max_shift:  5.61666666667

@@ -168,7 +168,7 @@ def main(id_file):
 
 	#instance = random_instance()
 
-	file_name = 'c10'+str(id_file)+'.txt'
+	file_name = 'c_r_rc_100_100/'+'rc10'+str(id_file)+'.txt'
 
 	Locations,start,end = instance.load_instance(n,file_name)
 
