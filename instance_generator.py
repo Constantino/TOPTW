@@ -1,11 +1,28 @@
 import random
 from location import location
+import math
 
 class random_instance:
 	
 	Locations = []
 	start = 0
 	end = 0
+
+	def EuclideanDistance(self, L1, L2):
+
+		return math.sqrt( pow(float(L1.x) - float(L2.x), 2) + pow(float(L1.y) - float(L2.y), 2) )
+
+	def generate_times_for_instances(self, n, Locations):
+
+		#times = [ [ 0 ]*(i+1)+[random.randint(0,60)/60.0 for j in range(i,n) if j > i] for i in range(n) ]
+		times = [ [ 0 ]*(i+1)+[ self.EuclideanDistance(Locations[i],Locations[j]) for j in range(i,n) if j > i] for i in range(n) ]
+		
+		for i in range(1,n):
+			for j in range(n):
+				if j < i:
+					times[i][j] = times[j][i]
+
+		return times
 
 	def load_instance(self, n, start, end):
 
@@ -61,9 +78,9 @@ class random_instance:
 			else:
 				self.Locations[i].id_location = i
 				self.Locations[i].name = "Loc"+str(i)
-				self.Locations[i].opening = new_lines[i][8]
-				self.Locations[i].closing = new_lines[i][9]
-				self.Locations[i].score = new_lines[i][4]
+				self.Locations[i].opening = float(new_lines[i][8])
+				self.Locations[i].closing = float(new_lines[i][9])
+				self.Locations[i].score = float(new_lines[i][4])
 				self.Locations[i].wait = 0
 				self.Locations[i].max_shift = 0
 				self.Locations[i].shift = 0
@@ -85,6 +102,7 @@ class random_instance:
 					times[i][j] = times[j][i]
 
 		return times
+
 	"""
 	def generate_times(self, n,h):
 

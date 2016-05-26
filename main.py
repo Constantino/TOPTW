@@ -2,6 +2,7 @@ from location import location
 from insertion_step import insertion_step
 from ILS import ILS
 from instance_generator import random_instance
+import math
 
 def print_locations(Locations):
 	print "TOUR: "
@@ -132,9 +133,11 @@ def shake(RestOfLocations, Locations, R,S):
 	return Locations
 
 
+"""
 start = 0 #hours
 end = 1236 #hours
 n = 100 #no. elements
+
 instance = random_instance()
 
 Locations = instance.generate(n,start,end)
@@ -142,6 +145,26 @@ Locations = instance.generate(n,start,end)
 times = instance.generate_times(n)
 
 print_locations(Locations)
+"""
+
+##########################
+#NEW INVOCATION
+##########################
+start = 0 #hours
+end = 1236 #hours
+n = 100 #no. elements
+
+instance = random_instance()
+
+Locations = instance.load_instance(n,start,end)
+
+times = instance.generate_times_for_instances(len(Locations),Locations)
+
+print_locations(Locations)
+
+##########################
+#END NEW INVOCATION
+##########################
 
 """
 print "times:"

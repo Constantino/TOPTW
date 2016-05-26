@@ -53,3 +53,5 @@ locations = instance.load_instance(n,start,end)
 
 print_locations(locations)
 
+instance.generate_times_for_instances(len(locations),locations)
+
