@@ -7,11 +7,73 @@ class random_instance:
 	start = 0
 	end = 0
 
-	def load_instance(self):
+	def load_instance(self, n, start, end):
 
-		
+		n = n+2 # + start and end
 
-		return 
+		file = open('c101.txt', 'r') #identify file name
+
+		lines = file.readlines()
+
+		new_lines = []
+
+		for line in lines:
+			new_lines.append( line.split() )
+
+
+		self.start = start
+		self.end = end
+
+		for i in range(n):
+			self.Locations.append(location())
+			if i == 0:
+				self.Locations[0].id_location = i
+				self.Locations[0].name = "start"
+				self.Locations[0].opening = self.start
+				self.Locations[0].closing = self.end
+				self.Locations[0].score = 0
+				self.Locations[0].max_shift = 0
+				self.Locations[0].shift = 0
+				self.Locations[0].ratio = 0
+				self.Locations[0].arrival = 0
+				self.Locations[0].leave = 0
+				self.Locations[0].x = new_lines[2][1]
+				self.Locations[0].y = new_lines[2][2]
+
+				new_lines.pop(0)
+				new_lines.pop(0)
+
+			elif i == n-1:
+				self.Locations[i].id_location = i
+				self.Locations[i].name = "End"
+				self.Locations[i].opening = start
+				self.Locations[i].closing = end
+				self.Locations[i].score = 0
+				self.Locations[i].wait = 0
+				self.Locations[i].max_shift = 0
+				self.Locations[i].shift = 0
+				self.Locations[i].ratio = 0
+				self.Locations[i].arrival = 0
+				self.Locations[i].leave = 0
+				self.Locations[i].x = new_lines[0][1]
+				self.Locations[i].y = new_lines[0][2]
+
+			else:
+				self.Locations[i].id_location = i
+				self.Locations[i].name = "Loc"+str(i)
+				self.Locations[i].opening = new_lines[i][8]
+				self.Locations[i].closing = new_lines[i][9]
+				self.Locations[i].score = new_lines[i][4]
+				self.Locations[i].wait = 0
+				self.Locations[i].max_shift = 0
+				self.Locations[i].shift = 0
+				self.Locations[i].ratio = 0
+				self.Locations[i].arrival = 0
+				self.Locations[i].leave = 0
+				self.Locations[i].x = new_lines[i][1]
+				self.Locations[i].y = new_lines[i][2]
+
+		return self.Locations
 
 	def generate_times(self, n):
 

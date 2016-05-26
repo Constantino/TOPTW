@@ -132,9 +132,9 @@ def shake(RestOfLocations, Locations, R,S):
 	return Locations
 
 
-start = 7 #hours
-end = 23 #hours
-n = 50 #no. elements
+start = 0 #hours
+end = 1236 #hours
+n = 100 #no. elements
 instance = random_instance()
 
 Locations = instance.generate(n,start,end)

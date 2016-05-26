@@ -10,3 +10,6 @@ class location:
 	shift = 0
 	ratio = 0
 	leave = 0
+	x = 0
+	y = 0
+
