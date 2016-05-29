@@ -18,6 +18,7 @@ def print_locations(Locations):
 		print "-- opening: ",e.opening
 		print "-- closing: ",e.closing
 		print "-- arrival: ",e.arrival
+		print "-- required_time: ",e.required_time
 		print "-- wait: ",e.wait
 		print "-- max_shift: ",e.max_shift
 		print "-- shift: ",e.shift

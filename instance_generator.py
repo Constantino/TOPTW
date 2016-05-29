@@ -57,6 +57,7 @@ class random_instance:
 				self.Locations[0].leave = 0
 				self.Locations[0].x = new_lines[2][1]
 				self.Locations[0].y = new_lines[2][2]
+				self.Locations[0].required_time = float(new_lines[2][3])
 
 				new_lines.pop(0)
 				new_lines.pop(0)
@@ -75,6 +76,7 @@ class random_instance:
 				self.Locations[i].leave = 0
 				self.Locations[i].x = new_lines[0][1]
 				self.Locations[i].y = new_lines[0][2]
+				self.Locations[i].required_time = float(new_lines[0][3])
 
 			else:
 				self.Locations[i].id_location = i
@@ -90,6 +92,7 @@ class random_instance:
 				self.Locations[i].leave = 0
 				self.Locations[i].x = new_lines[i][1]
 				self.Locations[i].y = new_lines[i][2]
+				self.Locations[i].required_time = float(new_lines[i][3])
 
 		return self.Locations, self.start, self.end
 

@@ -21,7 +21,7 @@ class insertion_step:
 
 	def update_stuff(self, locations, times, start):
 
-		req_time = 10 #TIEMPO REQUERIDO
+		#req_time = 10 #TIEMPO REQUERIDO
 
 		for i in range(1,len(locations)-1):
 
@@ -35,7 +35,7 @@ class insertion_step:
 				locations[i].shift = self.Shift( locations, i , i-1, times, locations[i-1].leave)
 
 			locations[i].wait = self.wait(locations[i].opening,locations[i].arrival)
-			locations[i].leave = locations[i].arrival + locations[i].wait + req_time
+			locations[i].leave = locations[i].arrival + locations[i].wait + locations[i].required_time # req_time
 			locations[i].ratio = self.ratio(locations,i)
 
 		return locations

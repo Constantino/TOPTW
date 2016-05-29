@@ -12,4 +12,5 @@ class location:
 	leave = 0
 	x = 0
 	y = 0
+	required_time = 0
 
