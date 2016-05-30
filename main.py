@@ -169,7 +169,7 @@ def main(id_file):
 
 	#instance = random_instance()
 
-	file_name = 'c_r_rc_100_100/'+'rc10'+str(id_file)+'.txt'
+	file_name = 'c_r_rc_100_100/'+'c10'+str(id_file)+'.txt'
 
 	Locations,start,end = instance.load_instance(n,file_name)
 
@@ -226,7 +226,7 @@ def main(id_file):
 	#print "#########	ILS	   #########"
 	#print "#############################"
 
-	while NoImprovementCounter < 50:
+	while NoImprovementCounter < 150:
 		"""
 		print "--- <RestOfLocations> ---"
 		print_locations(RestOfLocations)
@@ -289,11 +289,11 @@ def main(id_file):
 	nombre_instancia = file_name
 	bk = getTourRatio( OriginalSolution )
 	ils = getTourRatio( BestFound['tour'] )
-	elapsed_time = time.time() - start_time
+	elapsed_time = time.time() - start_time	
 	gap = (bk-ils)/bk
 	#print "OriginalSolution: ", getTourRatio( OriginalSolution )
 	#print "EnhancedSolution: ", getTourRatio( BestFound['tour'] )
-	print nombre_instancia,", ",bk,",",ils,",",abs(gap)*100,",",elapsed_time
+	print nombre_instancia,", ",bk,",",ils,",",gap*100,",",elapsed_time
 
 
 instance = random_instance()
