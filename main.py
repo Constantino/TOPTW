@@ -25,7 +25,44 @@ def print_locations(Locations):
 		print "-- ratio: ",e.ratio
 		print "-- leave: ",e.leave
 		print " "
-		
+	
+def write_file(Locations,file_name):
+	file = open(file_name+"_tour.txt","w")
+	file.write("TOUR: ")
+	file.write("\n")
+	file.write("Start: "+str(Locations[0].opening))
+	file.write("\n")
+	file.write("End: "+str(Locations[0].closing))
+	file.write("\n")
+	file.write("Locations:")
+	file.write("\n\n")
+	for e in Locations:
+		file.write("-- location ID: "+str(e.id_location))
+		file.write("\n")
+		file.write("-- name: "+e.name)
+		file.write("\n")
+		file.write("-- score: "+str(e.score))
+		file.write("\n")
+		file.write("-- opening: "+str(e.opening))
+		file.write("\n")
+		file.write("-- closing: "+str(e.closing))
+		file.write("\n")
+		file.write("-- arrival: "+str(e.arrival))
+		file.write("\n")
+		file.write("-- required_time: "+str(e.required_time))
+		file.write("\n")
+		file.write("-- wait: "+str(e.wait))
+		file.write("\n")
+		file.write("-- max_shift: "+str(e.max_shift))
+		file.write("\n")
+		file.write("-- shift: "+str(e.shift))
+		file.write("\n")
+		file.write("-- ratio: "+str(e.ratio))
+		file.write("\n")
+		file.write("-- leave: "+str(e.leave))
+		file.write("\n\n")
+
+	file.close()
 
 def getTourRatio(Locations):
 	ratio = 0
@@ -290,11 +327,11 @@ def main(id_file):
 	bk = getTourRatio( OriginalSolution )
 	ils = getTourRatio( BestFound['tour'] )
 	elapsed_time = time.time() - start_time	
-	gap = (bk-ils)/bk
+	gap = (ils-bk)/ils
 	#print "OriginalSolution: ", getTourRatio( OriginalSolution )
 	#print "EnhancedSolution: ", getTourRatio( BestFound['tour'] )
 	print nombre_instancia,", ",bk,",",ils,",",gap*100,",",elapsed_time
-
+	write_file(BestFound['tour'],file_name)
 
 instance = random_instance()
 InsertionStep = insertion_step()
