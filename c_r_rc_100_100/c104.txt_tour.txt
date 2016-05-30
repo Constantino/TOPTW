@@ -1,0 +1,187 @@
+TOUR: 
+Start: 0
+End: 1236.0
+Locations:
+
+-- location ID: 0
+-- name: start
+-- score: 0
+-- opening: 0
+-- closing: 1236.0
+-- arrival: 0
+-- required_time: 0.0
+-- wait: 0
+-- max_shift: 0
+-- shift: 0
+-- ratio: 0
+-- leave: 0
+
+-- location ID: 57
+-- name: Loc57
+-- score: 40.0
+-- opening: 0.0
+-- closing: 1111.0
+-- arrival: 18.6815416923
+-- required_time: 90.0
+-- wait: 0
+-- max_shift: 1065.80196097
+-- shift: 1065.80196097
+-- ratio: 40.0
+-- leave: 108.681541692
+
+-- location ID: 54
+-- name: Loc54
+-- score: 40.0
+-- opening: 0.0
+-- closing: 1105.0
+-- arrival: 110.681541692
+-- required_time: 90.0
+-- wait: 0
+-- max_shift: 1059.95003121
+-- shift: 1059.95003121
+-- ratio: 40.0
+-- leave: 200.681541692
+
+-- location ID: 25
+-- name: Loc25
+-- score: 40.0
+-- opening: 169.0
+-- closing: 224.0
+-- arrival: 205.681541692
+-- required_time: 90.0
+-- wait: 0
+-- max_shift: 205.86725405
+-- shift: 205.86725405
+-- ratio: 40.0
+-- leave: 295.681541692
+
+-- location ID: 93
+-- name: Loc93
+-- score: 40.0
+-- opening: 0.0
+-- closing: 1102.0
+-- arrival: 297.681541692
+-- required_time: 90.0
+-- wait: 0
+-- max_shift: 1055.98837366
+-- shift: 1055.98837366
+-- ratio: 40.0
+-- leave: 387.681541692
+
+-- location ID: 74
+-- name: Loc74
+-- score: 50.0
+-- opening: 353.0
+-- closing: 412.0
+-- arrival: 390.681541692
+-- required_time: 90.0
+-- wait: 0
+-- max_shift: 361.102217366
+-- shift: 361.102217366
+-- ratio: 50.0
+-- leave: 480.681541692
+
+-- location ID: 38
+-- name: Loc38
+-- score: 30.0
+-- opening: 479.0
+-- closing: 522.0
+-- arrival: 485.153677647
+-- required_time: 90.0
+-- wait: 0
+-- max_shift: 475.768943744
+-- shift: 475.768943744
+-- ratio: 30.0
+-- leave: 575.153677647
+
+-- location ID: 16
+-- name: Loc16
+-- score: 40.0
+-- opening: 0.0
+-- closing: 1105.0
+-- arrival: 578.153677647
+-- required_time: 90.0
+-- wait: 0
+-- max_shift: 1054.49067223
+-- shift: 1054.49067223
+-- ratio: 40.0
+-- leave: 668.153677647
+
+-- location ID: 81
+-- name: Loc81
+-- score: 30.0
+-- opening: 0.0
+-- closing: 1098.0
+-- arrival: 670.982104772
+-- required_time: 90.0
+-- wait: 0
+-- max_shift: 1028.20515532
+-- shift: 1028.20515532
+-- ratio: 30.0
+-- leave: 760.982104772
+
+-- location ID: 88
+-- name: Loc88
+-- score: 30.0
+-- opening: 0.0
+-- closing: 1119.0
+-- arrival: 762.982104772
+-- required_time: 90.0
+-- wait: 0
+-- max_shift: 1089.24574884
+-- shift: 1089.24574884
+-- ratio: 30.0
+-- leave: 852.982104772
+
+-- location ID: 33
+-- name: Loc33
+-- score: 40.0
+-- opening: 0.0
+-- closing: 1112.0
+-- arrival: 857.982104772
+-- required_time: 90.0
+-- wait: 0
+-- max_shift: 1073.47389077
+-- shift: 1073.47389077
+-- ratio: 40.0
+-- leave: 947.982104772
+
+-- location ID: 63
+-- name: Loc63
+-- score: 50.0
+-- opening: 0.0
+-- closing: 1131.0
+-- arrival: 950.982104772
+-- required_time: 90.0
+-- wait: 0
+-- max_shift: 1106.65982535
+-- shift: 1106.65982535
+-- ratio: 50.0
+-- leave: 1040.98210477
+
+-- location ID: 70
+-- name: Loc70
+-- score: 30.0
+-- opening: 0.0
+-- closing: 1087.0
+-- arrival: 1059.85006704
+-- required_time: 90.0
+-- wait: 0
+-- max_shift: 1023.47650045
+-- shift: 1023.47650045
+-- ratio: 30.0
+-- leave: 1149.85006704
+
+-- location ID: 101
+-- name: End
+-- score: 0
+-- opening: 0
+-- closing: 1236.0
+-- arrival: 0
+-- required_time: 0.0
+-- wait: 0
+-- max_shift: 0
+-- shift: 0
+-- ratio: 0
+-- leave: 0
+
