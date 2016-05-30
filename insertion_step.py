@@ -87,7 +87,9 @@ class insertion_step:
 		#Gain of choosing it taking score vs cost of time
 		#print Locations[i].id_location
 
-		return Locations[i].score*1.0/Locations[i].shift if Locations[i].shift > 0 else 1
+		#return Locations[i].score*1.0/Locations[i].shift if Locations[i].shift > 0 else 1
+		#<exp> Need same unit than unit tests
+		return Locations[i].score
 
 	def Shift( self, Locations, j , i, times, start):
 		#Get the total cost of time of including a location between location_i and location_k
